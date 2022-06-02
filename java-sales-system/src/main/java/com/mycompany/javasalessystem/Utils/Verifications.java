@@ -86,8 +86,13 @@ public class Verifications {
         if (name.length() == 0) {
             return false;
         }
-
         return true;
     }
 
+    public static boolean verifyPassword(String password) {
+        if (password.length() < 8) {
+            return false;
+        }
+        return true;
+    }
 }
