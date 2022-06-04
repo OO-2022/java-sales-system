@@ -1,4 +1,4 @@
-package com.mycompany.salessystem.Utils;
+package com.mycompany.javasalessystem.Utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

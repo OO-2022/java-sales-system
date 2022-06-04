@@ -3,6 +3,9 @@ package com.mycompany.javasalessystem.Models;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.mycompany.javasalessystem.Repositories.ProductRepository;
+import com.mycompany.javasalessystem.Repositories.SaleRepository;
+
 public class Sale {
     private String id;
     private Date date;
@@ -10,6 +13,7 @@ public class Sale {
     private ArrayList<Product> products;
     private ArrayList<Integer> quantities;
     private float price;
+    private float finalPrice;
 
     public Sale(String id, Date date, String idClient, ArrayList products, ArrayList quantities) {
         this.id = id;
@@ -65,5 +69,35 @@ public class Sale {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public float getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void addProduct(String id, int quantity) throws CloneNotSupportedException {
+        Product product = (Product)ProductRepository.findById(id).clone();
+                
+        if(product == null){
+            System.out.println("Produto não encontrado no sistema");
+            return;
+        }
+        
+        int stockQuantity = product.getQuantity();
+        
+        if(stockQuantity < quantity){
+            System.out.println("Quantidade insuficiente de "+product.getName()+"no estoque: Ha apenas " + stockQuantity + " unidades");
+            return;
+        } 
+        
+        this.finalPrice += (float)(product.getPrice() * quantity);
+        
+        product.setQuantity(quantity);
+        
+        products.add(product);
+        
+        ProductRepository.update(id, product.getName(), product.getPrice(), stockQuantity - quantity);
+        
+        new SaleRepository().save();        
     }
 }

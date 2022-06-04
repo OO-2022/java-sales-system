@@ -1,4 +1,4 @@
-package com.mycompany.salessystem.Mocks;
+package com.mycompany.javasalessystem.Mocks;
 
 import com.mycompany.javasalessystem.Models.Product;
 import com.mycompany.javasalessystem.Models.Sale;

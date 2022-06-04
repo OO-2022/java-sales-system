@@ -1,4 +1,4 @@
-package com.mycompany.salessystem.Repositories;
+package com.mycompany.javasalessystem.Repositories;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
