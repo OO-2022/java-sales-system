@@ -2,11 +2,11 @@ package com.mycompany.salessystem.Repositories;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mycompany.salessystem.Database.Database;
-import com.mycompany.salessystem.Models.Client;
-import com.mycompany.salessystem.Models.Product;
-import com.mycompany.salessystem.Models.Sale;
-import com.mycompany.salessystem.Utils.ConversionToDate;
+import com.mycompany.javasalessystem.Database.Database;
+import com.mycompany.javasalessystem.Models.Client;
+import com.mycompany.javasalessystem.Models.Product;
+import com.mycompany.javasalessystem.Models.Sale;
+import com.mycompany.javasalessystem.Utils.ConversionToDate;
 import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.util.ArrayList;

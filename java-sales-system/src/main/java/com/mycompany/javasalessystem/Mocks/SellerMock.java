@@ -1,8 +1,8 @@
 package com.mycompany.salessystem.Mocks;
 
-import com.mycompany.salessystem.Models.Seller;
-import com.mycompany.salessystem.Models.User;
-import com.mycompany.salessystem.Repositories.SellerRepository;
+import com.mycompany.javasalessystem.Models.Seller;
+import com.mycompany.javasalessystem.Models.User;
+import com.mycompany.javasalessystem.Repositories.SellerRepository;
 
 public class SellerMock {
     public static void createSeller() {

@@ -2,9 +2,9 @@ package com.mycompany.salessystem.Repositories;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mycompany.salessystem.Database.Database;
-import com.mycompany.salessystem.Models.Seller;
-import com.mycompany.salessystem.Utils.Verifications;
+import com.mycompany.javasalessystem.Database.Database;
+import com.mycompany.javasalessystem.Models.Seller;
+import com.mycompany.javasalessystem.Utils.Verifications;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.UUID;

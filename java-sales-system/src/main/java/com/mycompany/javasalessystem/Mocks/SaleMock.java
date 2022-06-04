@@ -1,9 +1,9 @@
 package com.mycompany.salessystem.Mocks;
 
-import com.mycompany.salessystem.Models.Product;
-import com.mycompany.salessystem.Models.Sale;
-import com.mycompany.salessystem.Repositories.ProductRepository;
-import com.mycompany.salessystem.Repositories.SaleRepository;
+import com.mycompany.javasalessystem.Models.Product;
+import com.mycompany.javasalessystem.Models.Sale;
+import com.mycompany.javasalessystem.Repositories.ProductRepository;
+import com.mycompany.javasalessystem.Repositories.SaleRepository;
 import java.text.ParseException;
 import java.util.ArrayList;
 
