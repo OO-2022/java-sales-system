@@ -14,8 +14,20 @@ public class MainView {
 
         System.out.println("(1) Ver Clientes");
         System.out.println("(2) Cadastrar Clientes");
+        
+        System.out.println("(3) Ver Funcionarios");
+        System.out.println("(4) Cadastrar Funcionario");
+        
         int option = teclado.nextInt();
+        
+        if (option == 1 || option == 2){
+            ClientView.viewClientOptionsSwitch(option);
+        } else if (option == 3 || option == 4){
+            SellerView.viewSellerOptionsSwitch(option);
+        } else {
+            index();
+        }
 
-        ClientView.viewClientOptionsSwitch(option);
+        
     }
 }

@@ -5,8 +5,17 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
+import com.mycompany.javasalessystem.Repositories.*;
+
 public final class Database {
     public static final String PATH_FOLDER = "src/main/java/com/mycompany/javasalessystem/Database/Jsons";
+    
+    private static ProductRepository productRepository = new ProductRepository();
+    private static SellerRepository sellerRepository = new SellerRepository();
+    private static AdminRepository adminRepository = new AdminRepository();
+    private static ClientRepository clientRepository = new ClientRepository();
+    private static SaleRepository saleRepository = new SaleRepository();
+    
     
     public static void write(String fileName, String json) {
         try {
@@ -42,6 +51,10 @@ public final class Database {
     }
 
     public static void load() {
-        
+        productRepository.load();
+        sellerRepository.load();
+        clientRepository.load();
+        adminRepository.load();   
+        saleRepository.load();
     }
 }
