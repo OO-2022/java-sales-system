@@ -23,6 +23,10 @@ public class Sale {
         this.quantities = quantities;
     }
 
+    public Sale(String saleId, Date formattedDate, String idClient) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getId() {
         return id;
     }
@@ -76,7 +80,7 @@ public class Sale {
     }
 
     public void addProduct(String id, int quantity) throws CloneNotSupportedException {
-        Product product = (Product)ProductRepository.findById(id).clone();
+        var product = (Product)ProductRepository.findById(id).clone();
                 
         if(product == null){
             System.out.println("Produto não encontrado no sistema");

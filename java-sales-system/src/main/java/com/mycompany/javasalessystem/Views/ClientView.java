@@ -18,10 +18,6 @@ public class ClientView {
                 Client cliente = clientCreationForm();
                 if (cliente != null) System.out.println("Sucesso na criacao");
                 break;
-            case 3:
-                break;
-            case 4:
-                break;
         }
         
         System.out.println("Selecione: ");

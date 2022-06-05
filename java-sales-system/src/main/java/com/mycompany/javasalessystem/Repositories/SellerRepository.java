@@ -52,13 +52,18 @@ public class SellerRepository {
     }
     
     public static void list(){
+        if (sellers.isEmpty()){
+            System.out.println("Ainda nao ha funcionario cadastrado");
+            System.out.println("-- ** --");
+        }
+        
         for(Seller seller: sellers){
             System.out.println("ID seller: "+seller.getId());
             System.out.println("Nome: "+seller.getName());
             System.out.println("Email: "+seller.getEmail());
             System.out.println("Senha: "+seller.getPassword()); 
             System.out.println("Occupation: "+seller.getOccupation());
-            System.out.println("");
+            System.out.println("-- ** --");
         }
     }
     
