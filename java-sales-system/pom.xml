@@ -24,7 +24,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.kleitonewerton.controledeestoque.Sistema</mainClass>
+                            <mainClass>com.mycompany.javasalessystem.Application</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
