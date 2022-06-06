@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import com.mycompany.javasalessystem.Repositories.*;
 
 public final class Database {
-    public static final String PATH_FOLDER = "src/main/java/com/mycompany/javasalessystem/Database/Jsons";
+    public static final String PATH_FOLDER = "src/main/java/com/mycompany/javasalessystem/Database/Jsons/";
     
     private static ProductRepository productRepository = new ProductRepository();
     private static SellerRepository sellerRepository = new SellerRepository();
