@@ -45,4 +45,8 @@ public class Product {
         this.quantity = quantity;
     }
     
+    @Override 
+    public Product clone() throws CloneNotSupportedException { 
+        return (Product)super.clone(); 
+    }
 }

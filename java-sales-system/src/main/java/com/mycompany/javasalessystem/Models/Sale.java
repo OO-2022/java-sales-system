@@ -11,20 +11,14 @@ public class Sale {
     private Date date;
     private String idClient;
     private ArrayList<Product> products;
-    private ArrayList<Integer> quantities;
-    private float price;
     private float finalPrice;
 
-    public Sale(String id, Date date, String idClient, ArrayList products, ArrayList quantities) {
+    public Sale(String id, Date date, String idClient) {
         this.id = id;
         this.date = date;
         this.idClient = idClient;
-        this.products = products;
-        this.quantities = quantities;
-    }
-
-    public Sale(String saleId, Date formattedDate, String idClient) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.finalPrice = 0;
+        this.products = new ArrayList<>();
     }
 
     public String getId() {
@@ -59,28 +53,16 @@ public class Sale {
         this.products = products;
     }
 
-    public ArrayList<Integer> getQuantities() {
-        return quantities;
-    }
-
-    public void setQuantities(ArrayList<Integer> quantities) {
-        this.quantities = quantities;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
     public float getFinalPrice() {
         return finalPrice;
     }
 
+    public void setFinalPrice(float finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+    
     public void addProduct(String id, int quantity) throws CloneNotSupportedException {
-        var product = (Product)ProductRepository.findById(id).clone();
+        Product product = (Product)ProductRepository.findById(id).clone();
                 
         if(product == null){
             System.out.println("Produto não encontrado no sistema");
@@ -99,9 +81,18 @@ public class Sale {
         product.setQuantity(quantity);
         
         products.add(product);
+                
+        stockQuantity = stockQuantity - quantity;
         
-        ProductRepository.update(id, product.getName(), product.getPrice(), stockQuantity - quantity);
+        ProductRepository.update(id, product.getName(), product.getPrice(), stockQuantity);
+                
+        new SaleRepository().save();
         
-        new SaleRepository().save();        
+    }
+    
+    public void removeProduct(String id){
+        Product product = ProductRepository.findById(id);
+                
+        products.remove(product);
     }
 }
