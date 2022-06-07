@@ -12,8 +12,8 @@ public class ClientMock {
         Client client = ClientRepository.update("c17bc41b-b118-4f70-8a49-15af8fc33c25","Paulo Geraldo do Valle Carvalho", "385664775500", "carvalho.paulo@gmail.com", "32991365584", "36085221");
     }
 
-    public static void readClient() {
-        ClientRepository.read();
+    public static void listClient() {
+        ClientRepository.list();
     }
     
     public static void deleteClient() {
