@@ -36,19 +36,19 @@ public class ClientView {
     public static Client clientCreationForm() {
         Scanner teclado = new Scanner(System.in);
 
-        System.out.print("Nome do Cliente: ");
+        System.out.println("Nome do Cliente: ");
         String name = teclado.nextLine();
         
-        System.out.print("CPF do Cliente: ");
+        System.out.println("CPF do Cliente: ");
         String cpf = teclado.nextLine();
         
-        System.out.print("Email do Cliente: ");
+        System.out.println("Email do Cliente: ");
         String email = teclado.nextLine();    
         
-        System.out.print("Telefone do Cliente: ");
+        System.out.println("Telefone do Cliente: ");
         String telefone = teclado.nextLine();
         
-        System.out.print("CEP do Cliente: ");
+        System.out.println("CEP do Cliente: ");
         String cep = teclado.nextLine();
         
         Client cliente = ClientRepository.create(name, cpf, email, telefone, cep);

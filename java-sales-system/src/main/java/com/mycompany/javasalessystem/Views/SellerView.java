@@ -34,16 +34,16 @@ public class SellerView {
     public static Seller sellerCreationForm() {
         Scanner teclado = new Scanner(System.in);
 
-        System.out.print("Nome do Funcionario: ");
+        System.out.println("Nome do Funcionario: ");
         String name = teclado.nextLine();
         
-        System.out.print("Email do Fucionario: ");
+        System.out.println("Email do Fucionario: ");
         String email = teclado.nextLine();    
         
-        System.out.print("Senha do Funcionario: ");
+        System.out.println("Senha do Funcionario: ");
         String password = teclado.nextLine();
         
-        System.out.print("Cargo do Funcionario: ");
+        System.out.println("Cargo do Funcionario: ");
         String occupation = teclado.nextLine();
         
         Seller seller = SellerRepository.create(name, email, password, occupation);
