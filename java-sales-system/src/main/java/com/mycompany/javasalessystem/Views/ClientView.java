@@ -13,7 +13,7 @@ public class ClientView {
         
         switch (option) {
             case 1:
-                ClientRepository.read();
+                ClientRepository.list();
                 break;
             case 2:
                 Client client = clientCreationForm();
@@ -29,7 +29,6 @@ public class ClientView {
         if (outOrIn == 1){
             MainView.index();
         }
-        
     }
     
     public static Client clientCreationForm() {

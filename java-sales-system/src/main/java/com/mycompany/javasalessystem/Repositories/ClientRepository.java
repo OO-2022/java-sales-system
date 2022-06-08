@@ -61,10 +61,10 @@ public class ClientRepository {
 
         return client;
     }
-
-    public static void read() {
+    
+    public static void list() {
         if (clients.isEmpty()){
-            System.out.println("Ainda nao ha cliente cadastrado");
+            System.out.println("Ainda nao ha clientes cadastrados");
             System.out.println("-- ** --");
             return;
         }
@@ -78,6 +78,23 @@ public class ClientRepository {
             System.out.println("Cep: " + client.getCep());
             System.out.println("-- ** --");
         }
+    }
+    
+    public static void find(String id) {
+        Client client = findById(id);
+
+        if(client == null){
+            System.out.println("Cliente nao encontrado no sistema");
+            return;
+        }
+        
+        System.out.println("ID cliente: " + client.getId());
+        System.out.println("Nome: " + client.getName());
+        System.out.println("CPF: " + client.getCpf());
+        System.out.println("Email: " + client.getEmail());
+        System.out.println("Telefone: " + client.getPhone());
+        System.out.println("Cep: " + client.getCep());
+        System.out.println("-- ** --");
     }
 
     public static Client update(String id, String name, String cpf, String email, String phone, String cep) {
