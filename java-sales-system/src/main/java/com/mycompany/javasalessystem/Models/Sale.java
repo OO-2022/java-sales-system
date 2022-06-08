@@ -90,9 +90,28 @@ public class Sale {
         
     }
     
-    public void removeProduct(String id){
-        Product product = ProductRepository.findById(id);
-                
-        products.remove(product);
+    public void removeProduct(int position, int quantity){
+        Product productSale = products.get(position-1);
+        
+        Product productStock = (Product)ProductRepository.findById(productSale.getId());
+        
+        if(productStock == null){
+            System.out.println("Produto inexistente");
+            return;
+        }
+        
+        productStock.setQuantity(productStock.getQuantity() + quantity);
+        new ProductRepository().save();
+        
+        if(productSale.getQuantity() - quantity > 0){
+            productSale.setQuantity(productSale.getQuantity() - quantity);
+            
+            this.finalPrice -= (float)(productSale.getPrice() * quantity);
+        } else {
+            this.finalPrice -= (float)(productSale.getPrice() * quantity);
+            products.remove(productSale);
+        }
+
+        new SaleRepository().save();
     }
 }

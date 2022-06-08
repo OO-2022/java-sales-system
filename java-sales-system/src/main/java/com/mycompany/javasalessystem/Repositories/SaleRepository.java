@@ -29,8 +29,8 @@ public class SaleRepository {
         return null;
     }
 
-    public static Sale create(String idClient, String date) throws ParseException {
-        Client client = ClientRepository.findById(idClient);
+    public static Sale create(String cpf, String date) throws ParseException {
+        Client client = ClientRepository.findByCpf(cpf);
         
         if(client == null){
             System.err.println("Cliente nao cadastrado no sistema");
@@ -41,7 +41,7 @@ public class SaleRepository {
         
         Date formattedDate = ConversionToDate.conversionToDate(date);
         
-        Sale sale = new Sale(saleId, formattedDate, idClient);
+        Sale sale = new Sale(saleId, formattedDate, client.getId());
 
         sales.add(sale);
 
@@ -52,6 +52,11 @@ public class SaleRepository {
 
     
     public static void list() throws ParseException {
+        if (sales.isEmpty()){
+            System.out.println("Ainda nao ha vendas cadastradas");
+            System.out.println("-- ** --");
+        }
+        
         for (Sale sale : sales) {
             ArrayList<Product> products = sale.getProducts();
             
@@ -62,7 +67,7 @@ public class SaleRepository {
             for(int i = 0; i < products.size(); i++){
                 Product product = products.get(i);
                 
-                System.out.println(i+1 + " - " + product.getQuantity() + " * " + product.getName() + " = " + product.getPrice() + " (por unidade)");
+                System.out.println(i+1 + ". " + product.getQuantity() + " * " + product.getName() + " = " + product.getPrice() + " (por unidade)");
             }
             System.out.println("Preco final = "+sale.getFinalPrice());
             System.out.println("");
@@ -85,11 +90,30 @@ public class SaleRepository {
         for(int i = 0; i < products.size(); i++){
             Product product = products.get(i);
                 
-            System.out.println(i+1 + " - " + product.getQuantity() + " * " + product.getName() + " = " + product.getPrice() + " (por unidade)");
+            System.out.println(i+1 + ". " + product.getQuantity() + " * " + product.getName() + " = " + product.getPrice() + " (por unidade)");
         }
         System.out.println("Preco final = "+sale.getFinalPrice());
         System.out.println("");
     }
+    
+    public static void listProducts(String id) throws ParseException {
+        Sale sale = findById(id);
+        ArrayList<Product> products = sale.getProducts();
+
+        if (sale == null) {
+            System.out.println("Venda nao encontrada no sistema");
+            return;
+        }
+            
+        for(int i = 0; i < products.size(); i++){
+            Product product = products.get(i);
+                
+            System.out.println(i+1 + ". " + product.getQuantity() + " * " + product.getName() + " = " + product.getPrice() + " (por unidade)");
+        }
+        System.out.println("Preco final = "+sale.getFinalPrice());
+        System.out.println("");
+    }
+
 
     public static Sale update(String id, String idClient, String date) throws ParseException {
         Sale sale = SaleRepository.findById(id);

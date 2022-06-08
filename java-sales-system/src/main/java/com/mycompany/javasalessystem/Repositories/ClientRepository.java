@@ -11,13 +11,23 @@ import java.util.UUID;
 
 public class ClientRepository {
 
-    private static final String FILE_NAME = "client.json";
+    private static final String FILE_NAME = "clients.json";
 
     private static ArrayList<Client> clients = new ArrayList<>();
 
     public static Client findById(String id) {
         for (Client client : clients) {
             if (client.getId().compareTo(id) == 0) {
+                return client;
+            }
+        }
+
+        return null;
+    }
+    
+    public static Client findByCpf(String cpf) {
+        for (Client client : clients) {
+            if (client.getCpf().compareTo(cpf) == 0) {
                 return client;
             }
         }
