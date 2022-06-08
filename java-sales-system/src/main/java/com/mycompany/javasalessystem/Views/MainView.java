@@ -6,8 +6,6 @@ import java.text.ParseException;
 public class MainView {
 
     public static void index() throws ParseException, CloneNotSupportedException {
-        System.out.println("Bem-vindo(a) a papelaria Orientação&Objetos");
-
         Scanner teclado = new Scanner(System.in);
 
         System.out.println("Selecione o que deseja fazer: ");

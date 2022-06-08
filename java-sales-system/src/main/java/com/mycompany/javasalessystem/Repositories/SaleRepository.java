@@ -9,6 +9,8 @@ import com.mycompany.javasalessystem.Models.Sale;
 import com.mycompany.javasalessystem.Utils.ConversionToDate;
 import java.lang.reflect.Type;
 import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -29,7 +31,7 @@ public class SaleRepository {
         return null;
     }
 
-    public static Sale create(String cpf, String date) throws ParseException {
+    public static Sale create(String cpf) throws ParseException {
         Client client = ClientRepository.findByCpf(cpf);
         
         if(client == null){
@@ -39,7 +41,11 @@ public class SaleRepository {
         
         String saleId = UUID.randomUUID().toString();
         
-        Date formattedDate = ConversionToDate.conversionToDate(date);
+        //Date formattedDate = ConversionToDate.conversionToDate(date);
+        
+        Date in = new Date();
+        LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
+        Date formattedDate = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
         
         Sale sale = new Sale(saleId, formattedDate, client.getId());
 
@@ -115,7 +121,7 @@ public class SaleRepository {
     }
 
 
-    public static Sale update(String id, String idClient, String date) throws ParseException {
+    public static Sale update(String id, String idClient) throws ParseException {
         Sale sale = SaleRepository.findById(id);
         
         if(sale == null){
@@ -129,10 +135,7 @@ public class SaleRepository {
             System.err.println("Cliente nao cadastrado no sistema");
             return null;
         }
-        
-        Date formattedDate = ConversionToDate.conversionToDate(date);
-        
-        sale.setDate(formattedDate);
+
         sale.setIdClient(idClient);
 
         new SaleRepository().save();
