@@ -37,10 +37,7 @@ public class SaleView {
         System.out.println("CPF do Cliente: ");
         String client = teclado.nextLine();
         
-        System.out.println("Data: ");
-        String date = teclado.nextLine();
-        
-        Sale sale = SaleRepository.create(client, date);
+        Sale sale = SaleRepository.create(client);
         
         if(sale == null){
             return null;
@@ -96,8 +93,6 @@ public class SaleView {
         System.out.println("ID do Produto:  ");
         String product = teclado.nextLine();
                 
-        return product;
-
-        
+        return product;   
     }
 }
