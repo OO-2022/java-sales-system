@@ -25,12 +25,16 @@ public class MainView {
         int option = teclado.nextInt();
         
         switch(option){
-            case 1, 2 -> ClientView.viewClientOptionsSwitch(option);
-            case 3, 4 -> SellerView.viewSellerOptionsSwitch(option);
+            case 1:
+            case 2: ClientView.viewClientOptionsSwitch(option);
+            case 3:
+            case 4: SellerView.viewSellerOptionsSwitch(option);
             
-            case 5, 6 -> ProductView.viewProductOptionsSwitch(option);
-            case 7, 8 -> SaleView.viewSaleOptionsSwitch(option);
-            default -> index();
+            case 5:
+            case 6: ProductView.viewProductOptionsSwitch(option);
+            case 7:
+            case 8: SaleView.viewSaleOptionsSwitch(option);
+            default: index();
         }
     }
 }
