@@ -1,6 +1,6 @@
 package com.mycompany.javasalessystem.Models;
 
-public class Product {
+public class Product implements Cloneable{
     private String id;
     private String name;
     private double price;
@@ -45,7 +45,7 @@ public class Product {
         this.quantity = quantity;
     }
     
-    @Override 
+    @Override
     public Product clone() throws CloneNotSupportedException { 
         return (Product)super.clone(); 
     }

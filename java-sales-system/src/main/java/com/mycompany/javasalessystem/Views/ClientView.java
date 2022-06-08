@@ -2,11 +2,12 @@ package com.mycompany.javasalessystem.Views;
 
 import com.mycompany.javasalessystem.Models.Client;
 import com.mycompany.javasalessystem.Repositories.ClientRepository;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class ClientView {
 
-    public static void viewClientOptionsSwitch(int option) {
+    public static void viewClientOptionsSwitch(int option) throws ParseException, CloneNotSupportedException {
         Scanner teclado = new Scanner(System.in);
 
         
@@ -15,8 +16,8 @@ public class ClientView {
                 ClientRepository.read();
                 break;
             case 2:
-                Client cliente = clientCreationForm();
-                if (cliente != null) System.out.println("Sucesso na criacao");
+                Client client = clientCreationForm();
+                if (client != null) System.out.println("Sucesso na criacao do cliente");
                 break;
         }
         
@@ -28,8 +29,6 @@ public class ClientView {
         if (outOrIn == 1){
             MainView.index();
         }
-        
-        
         
     }
     
@@ -51,7 +50,8 @@ public class ClientView {
         System.out.println("CEP do Cliente: ");
         String cep = teclado.nextLine();
         
-        Client cliente = ClientRepository.create(name, cpf, email, telefone, cep);
-        return cliente;
+        Client client = ClientRepository.create(name, cpf, email, telefone, cep);
+        
+        return client;
     }
 }

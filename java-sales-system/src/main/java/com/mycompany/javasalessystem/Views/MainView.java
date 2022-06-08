@@ -1,11 +1,11 @@
 package com.mycompany.javasalessystem.Views;
 
 import java.util.Scanner;
-import com.mycompany.javasalessystem.Views.ClientView;
+import java.text.ParseException;
 
 public class MainView {
 
-    public static void index() {
+    public static void index() throws ParseException, CloneNotSupportedException {
         System.out.println("Bem-vindo(a) a papelaria Orientação&Objetos");
 
         Scanner teclado = new Scanner(System.in);
@@ -13,21 +13,26 @@ public class MainView {
         System.out.println("Selecione o que deseja fazer: ");
 
         System.out.println("(1) Ver Clientes");
-        System.out.println("(2) Cadastrar Clientes");
+        System.out.println("(2) Cadastrar Cliente");
         
         System.out.println("(3) Ver Funcionarios");
         System.out.println("(4) Cadastrar Funcionario");
         
+        System.out.println("(5) Ver Produtos");
+        System.out.println("(6) Cadastrar Produto");
+        
+        System.out.println("(7) Ver Vendas");
+        System.out.println("(8) Cadastrar Venda");
+        
         int option = teclado.nextInt();
         
-        if (option == 1 || option == 2){
-            ClientView.viewClientOptionsSwitch(option);
-        } else if (option == 3 || option == 4){
-            SellerView.viewSellerOptionsSwitch(option);
-        } else {
-            index();
+        switch(option){
+            case 1, 2 -> ClientView.viewClientOptionsSwitch(option);
+            case 3, 4 -> SellerView.viewSellerOptionsSwitch(option);
+            
+            case 5, 6 -> ProductView.viewProductOptionsSwitch(option);
+            case 7, 8 -> SaleView.viewSaleOptionsSwitch(option);
+            default -> index();
         }
-
-        
     }
 }

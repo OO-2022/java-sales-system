@@ -42,6 +42,11 @@ public class ProductRepository implements Repository {
     }
 
     public static void list(){
+        if (products.isEmpty()){
+            System.out.println("Ainda nao ha produtos cadastrados");
+            System.out.println("-- ** --");
+        }
+        
         for(Product product: products){
             System.out.println("Produto de ID: "+product.getId());
             System.out.println("Nome: "+product.getName());

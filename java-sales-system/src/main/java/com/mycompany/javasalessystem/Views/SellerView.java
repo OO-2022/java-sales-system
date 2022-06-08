@@ -2,13 +2,13 @@ package com.mycompany.javasalessystem.Views;
 
 import com.mycompany.javasalessystem.Models.Seller;
 import com.mycompany.javasalessystem.Repositories.SellerRepository;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class SellerView {
 
-    public static void viewSellerOptionsSwitch(int option) {
+    public static void viewSellerOptionsSwitch(int option) throws ParseException, CloneNotSupportedException {
         Scanner teclado = new Scanner(System.in);
-
         
         switch (option) {
             case 3:
@@ -16,7 +16,7 @@ public class SellerView {
                 break;
             case 4:
                 Seller seller = sellerCreationForm();
-                if (seller != null) System.out.println("Sucesso na criacao");
+                if (seller != null) System.out.println("Sucesso na criacao do vendedor");
                 break;
         }
         

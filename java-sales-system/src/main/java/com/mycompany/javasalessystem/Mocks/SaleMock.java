@@ -1,18 +1,16 @@
 package com.mycompany.javasalessystem.Mocks;
 
-import com.mycompany.javasalessystem.Models.Product;
 import com.mycompany.javasalessystem.Models.Sale;
-import com.mycompany.javasalessystem.Repositories.ProductRepository;
 import com.mycompany.javasalessystem.Repositories.SaleRepository;
 import java.text.ParseException;
-import java.util.ArrayList;
 
 public class SaleMock {
     public static void createSale() throws ParseException, CloneNotSupportedException {
-        Sale sale = SaleRepository.create("e1c33395-ad77-4bab-9d52-413bdf6a1b12", "27/01/2005");
+        Sale sale = SaleRepository.create("10301202699", "27/01/2005");
         
-        sale.addProduct("ba1c4eb2-9fa3-4be7-9d2e-f19491e14eaf", 10);
-        sale.addProduct("251e10d2-538c-43b0-9a20-6752f90ee095", 15);
+        sale.addProduct("281b30fb-aaf3-4f12-8aeb-ae9049fe8138", 2);
+        sale.removeProduct(1, 1);
+        //sale.addProduct("251e10d2-538c-43b0-9a20-6752f90ee095", 15);
     }
     
     /*
