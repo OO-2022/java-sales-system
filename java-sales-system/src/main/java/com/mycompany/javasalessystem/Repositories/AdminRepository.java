@@ -36,17 +36,17 @@ public class AdminRepository {
     }
 
     public static Admin create(String name, String email, String password, String occupation) {
-        if (Verifications.verifyName(name) == false) {
+        if (!Verifications.verifyName(name)) {
             System.out.println("Nome invalido");
             return null;
         }
 
-        if (Verifications.verifyEmail(email) == false) {
+        if (!Verifications.verifyEmail(email)) {
             System.out.println("Email invalido");
             return null;
         }
 
-        if (Verifications.verifyPassword(password) == false) {
+        if (!Verifications.verifyPassword(password)) {
             System.out.println("Senha deve ter no minimo 8 caracteres");
             return null;
         }

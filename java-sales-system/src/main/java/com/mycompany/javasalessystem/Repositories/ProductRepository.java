@@ -36,7 +36,7 @@ public class ProductRepository implements Repository {
     }
 
     public static Product create(String name, double price, int quantity) {
-        if (Verifications.verifyName(name) == false) {
+        if (!Verifications.verifyName(name)) {
             System.out.println("Nome invalido");
             return null;
         }
@@ -82,7 +82,7 @@ public class ProductRepository implements Repository {
     }
 
     public static Product update(String id, String name, double price, int quantity){
-        if (Verifications.verifyName(name) == false) {
+        if (!Verifications.verifyName(name)) {
             System.out.println("Nome invalido");
             return null;
         }
