@@ -10,6 +10,7 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 package com.mycompany.javasalessystem.Views;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.text.ParseException;
 
@@ -32,19 +33,30 @@ public class MainView {
         System.out.println("(7) Ver Vendas");
         System.out.println("(8) Cadastrar Venda");
         
-        int option = teclado.nextInt();
+        int option = leOption();
         
         switch(option){
             case 1:
-            case 2: ClientView.viewClientOptionsSwitch(option);
+            case 2: ClientView.viewClientOptionsSwitch(option);break;
             case 3:
-            case 4: SellerView.viewSellerOptionsSwitch(option);
-            
+            case 4: SellerView.viewSellerOptionsSwitch(option);break;
             case 5:
-            case 6: ProductView.viewProductOptionsSwitch(option);
+            case 6: ProductView.viewProductOptionsSwitch(option);break;
             case 7:
-            case 8: SaleView.viewSaleOptionsSwitch(option);
+            case 8: SaleView.viewSaleOptionsSwitch(option);break;
             default: index();
         }
+    }
+    public static int leOption(){
+        Scanner teclado = new Scanner(System.in);
+        int option;
+
+        try {
+            option = teclado.nextInt();
+        }catch(InputMismatchException ex) {
+            System.out.println("Valor digitado nao e um numero. Selecione uma opcao do menu: ");
+            option = leOption();
+        }
+        return option;
     }
 }

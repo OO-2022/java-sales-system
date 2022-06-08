@@ -12,6 +12,8 @@ package com.mycompany.javasalessystem.Views;
 
 import com.mycompany.javasalessystem.Models.Seller;
 import com.mycompany.javasalessystem.Repositories.SellerRepository;
+import com.sun.tools.javac.Main;
+
 import java.text.ParseException;
 import java.util.Scanner;
 
@@ -33,7 +35,7 @@ public class SellerView {
         System.out.println("Selecione: ");
         System.out.println("(0) Sair");
         System.out.println("(1) Voltar ao menu");
-        int outOrIn = teclado.nextInt();
+        int outOrIn = MainView.leOption();
         
         if (outOrIn == 1){
             MainView.index();

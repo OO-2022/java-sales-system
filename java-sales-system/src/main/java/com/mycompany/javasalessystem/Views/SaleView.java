@@ -89,7 +89,7 @@ public class SaleView {
             System.out.println("(1) Para adicionar um produto");
             System.out.println("(2) Para remover um produto");
 
-            option = teclado.nextInt();
+            option = MainView.leOption();
         };
         
         SaleRepository.find(sale.getId());

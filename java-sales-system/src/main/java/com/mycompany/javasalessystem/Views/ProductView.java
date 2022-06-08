@@ -34,7 +34,7 @@ public class ProductView {
         System.out.println("Selecione: ");
         System.out.println("(0) Sair");
         System.out.println("(1) Voltar ao menu");
-        int outOrIn = teclado.nextInt();
+        int outOrIn = MainView.leOption();
         
         if (outOrIn == 1){
             MainView.index();
