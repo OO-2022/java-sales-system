@@ -25,6 +25,13 @@ public class ProductRepository implements Repository {
 
     private static ArrayList<Product> products = new ArrayList<>();
 
+    public ProductRepository() {
+    }
+    
+    public static ArrayList<Product> getProducts() {
+        return products;
+    }
+    
     public static Product findById(String id){
         for(Product product: products){
             if(product.getId().compareTo(id) == 0){
@@ -56,13 +63,14 @@ public class ProductRepository implements Repository {
             System.out.println("Ainda nao ha produtos cadastrados");
             System.out.println("-- ** --");
         }
-        
-        for(Product product: products){
-            System.out.println("Produto de ID: "+product.getId());
-            System.out.println("Nome: "+product.getName());
-            System.out.println("Quantidade em estoque: "+product.getQuantity());
-            System.out.println("Preco por unidade: "+product.getPrice());
-            System.out.println("");
+        else{
+            for(Product product: products){
+                System.out.println("Produto de ID: "+product.getId());
+                System.out.println("Nome: "+product.getName());
+                System.out.println("Quantidade em estoque: "+product.getQuantity());
+                System.out.println("Preco por unidade: "+product.getPrice());
+                System.out.println("");
+            }
         }
     }
 
