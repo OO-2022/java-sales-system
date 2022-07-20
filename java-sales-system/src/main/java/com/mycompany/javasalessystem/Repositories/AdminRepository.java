@@ -63,14 +63,20 @@ public class AdminRepository {
     }
 
     public static void list() {
-        for (Admin admin : admins) {
-            System.out.println("ID admin: " + admin.getId());
-            System.out.println("Nome: " + admin.getName());
-            System.out.println("Email: " + admin.getEmail());
-            System.out.println("Senha: " + admin.getPassword());
-            System.out.println("Occupation: " + admin.getOccupation());
-            System.out.println("");
+        if (admins.isEmpty()){
+            System.out.println("Ainda nao ha produtos cadastrados");
+            System.out.println("-- ** --");
         }
+        else{
+            for (Admin admin : admins) {
+                System.out.println("ID admin: " + admin.getId());
+                System.out.println("Nome: " + admin.getName());
+                System.out.println("Email: " + admin.getEmail());
+                System.out.println("Senha: " + admin.getPassword());
+                System.out.println("Occupation: " + admin.getOccupation());
+                System.out.println("");
+            }
+    }
     }
 
     public static void find(String id) {
