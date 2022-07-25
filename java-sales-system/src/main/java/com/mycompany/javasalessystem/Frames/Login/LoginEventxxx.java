@@ -7,7 +7,7 @@ Aluno: Rafael de Oliveira Vargas           Matrícula: 202035022
 Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 */
-
+/*
 package com.mycompany.javasalessystem.Frames.Login;
 
 import com.mycompany.javasalessystem.Frames.ProductFrame;
@@ -70,3 +70,4 @@ public class LoginEventxxx implements ActionListener{
         }
     }
 }
+*/

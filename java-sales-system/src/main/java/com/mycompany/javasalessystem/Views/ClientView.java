@@ -12,14 +12,13 @@ package com.mycompany.javasalessystem.Views;
 
 import com.mycompany.javasalessystem.Models.Client;
 import com.mycompany.javasalessystem.Repositories.ClientRepository;
-import com.sun.tools.javac.Main;
 
 import java.text.ParseException;
 import java.util.Scanner;
 
 public class ClientView {
 
-    public static void viewClientOptionsSwitch(int option) throws ParseException, CloneNotSupportedException {
+    public static void viewClientOptionsSwitch(int option) throws ParseException, CloneNotSupportedException, Exception {
         Scanner teclado = new Scanner(System.in);
 
         
@@ -43,7 +42,7 @@ public class ClientView {
         }
     }
     
-    public static Client clientCreationForm() {
+    public static Client clientCreationForm() throws Exception {
         Scanner teclado = new Scanner(System.in);
 
         System.out.println("Nome do Cliente: ");

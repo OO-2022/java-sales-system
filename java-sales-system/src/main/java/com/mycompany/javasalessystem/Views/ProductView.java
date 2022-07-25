@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class ProductView {
 
-    public static void viewProductOptionsSwitch(int option) throws ParseException, CloneNotSupportedException {
+    public static void viewProductOptionsSwitch(int option) throws ParseException, CloneNotSupportedException, Exception {
         Scanner teclado = new Scanner(System.in);
 
         
@@ -42,7 +42,7 @@ public class ProductView {
         
     }
     
-    public static Product productCreationForm() {
+    public static Product productCreationForm() throws Exception {
         Scanner teclado = new Scanner(System.in);
 
         System.out.println("Nome do Produto: ");

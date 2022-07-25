@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class SaleView {
 
-    public static void viewSaleOptionsSwitch(int option) throws ParseException, CloneNotSupportedException {
+    public static void viewSaleOptionsSwitch(int option) throws ParseException, CloneNotSupportedException, Exception {
         Scanner teclado = new Scanner(System.in);
 
         switch (option) {
@@ -41,7 +41,7 @@ public class SaleView {
         
     }
     
-    public static Sale saleCreationForm() throws ParseException, CloneNotSupportedException {
+    public static Sale saleCreationForm() throws ParseException, CloneNotSupportedException, Exception {
         Scanner teclado = new Scanner(System.in);
 
         System.out.println("CPF do Cliente: ");

@@ -16,6 +16,8 @@ import com.mycompany.javasalessystem.Utils.Encrypt;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -44,7 +46,11 @@ public class SellerEvents implements MouseListener {
                 String password = frame.getTfPassword().getText();
                 String occupation = frame.getTfOccupation().getText();
                 
+            try {
                 model.addElement(SellerRepository.create(name, email, password, occupation));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
 
                 frame.getList().setModel(model);
                 frame.repaint();
@@ -61,7 +67,11 @@ public class SellerEvents implements MouseListener {
                     seller.setPassword(frame.getTfPassword().getText());
                     seller.setOccupation(frame.getTfOccupation().getText());
                     
-                    SellerRepository.update(seller.getId(), seller.getName(), seller.getEmail(), seller.getPassword(), seller.getOccupation());
+                    try {
+                        SellerRepository.update(seller.getId(), seller.getName(), seller.getEmail(), seller.getPassword(), seller.getOccupation());
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, ex);
+                    }
                     
                     frame.repaint();
                 }
@@ -81,7 +91,11 @@ public class SellerEvents implements MouseListener {
                     Seller seller = model.get(selectedIndex);
                     model.removeElementAt(selectedIndex);
                     frame.getList().setModel(model);
-                    SellerRepository.delete(seller.getId());
+                    try {
+                        SellerRepository.delete(seller.getId());
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, ex);
+                    }
                                 
                     frame.repaint();
                 }

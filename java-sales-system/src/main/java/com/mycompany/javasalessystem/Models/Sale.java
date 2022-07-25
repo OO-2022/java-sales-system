@@ -71,7 +71,7 @@ public class Sale {
         this.finalPrice = finalPrice;
     }
     
-    public void addProduct(String id, int quantity) throws CloneNotSupportedException {
+    public void addProduct(String id, int quantity) throws CloneNotSupportedException, Exception {
         Product product = (Product)ProductRepository.findById(id).clone();
                 
         if(product == null){

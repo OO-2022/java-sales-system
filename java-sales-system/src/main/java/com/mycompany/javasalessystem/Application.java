@@ -17,7 +17,7 @@ import java.text.ParseException;
 
 public class Application {
 
-    public static void main(String[] args) throws ParseException, CloneNotSupportedException {
+    public static void main(String[] args) throws ParseException, CloneNotSupportedException, Exception {
         System.out.println("O programa está em execução...");
         Database.load();
         
