@@ -24,6 +24,10 @@ public class SellerRepository {
 
     private static ArrayList<Seller> sellers = new ArrayList<>();
     
+    public static ArrayList<Seller> getSellers() {
+        return sellers;
+    }
+    
     public static Seller findById(String id){
         for(Seller seller: sellers){
             if(seller.getId().compareTo(id) == 0){
