@@ -12,6 +12,7 @@ package com.mycompany.javasalessystem.Frames.Seller;
 
 import com.mycompany.javasalessystem.Models.Seller;
 import com.mycompany.javasalessystem.Repositories.SellerRepository;
+import com.mycompany.javasalessystem.Utils.Encrypt;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

@@ -2,8 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.javasalessystem.Frames;
+package com.mycompany.javasalessystem.Frames.Login;
 
+import com.mycompany.javasalessystem.Frames.AdminFrame;
+import com.mycompany.javasalessystem.Models.User;
+import com.mycompany.javasalessystem.Repositories.UserRepository;
+import com.mycompany.javasalessystem.Utils.Session;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -65,7 +69,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(246, 251, 244));
 
-        user.setText("Usuário");
+        user.setText("Email");
 
         password.setText("Senha");
 
@@ -98,15 +102,13 @@ public class Login extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(user)
-                    .addComponent(tfUser)
-                    .addComponent(password)
-                    .addComponent(pfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(user)
+                        .addComponent(tfUser)
+                        .addComponent(password)
+                        .addComponent(pfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -149,14 +151,33 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_pfPasswordActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        if (tfUser.getText().equals("Marcos") && pfPassword.getText().equals("123456")){
+        String email = tfUser.getText();
+        String password = pfPassword.getText();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+            return;
+	}
+        
+        User user = UserRepository.signIn(email, password);
+        
+        if (user == null) {
+            JOptionPane.showMessageDialog(null, "Email ou senha incorretos!");
+            return;
+	}
+        
+        JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
+        
+        if (Session.getAdmin() != null) {
             AdminFrame telaAdmin = new AdminFrame();
             telaAdmin.montaTela();
             setVisible(false);
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Usuario e/ou senha invalido(s)");
-        }
+	}
+
+	if (Session.getSeller() != null) {
+            JOptionPane.showMessageDialog(null, "Seller");
+            //Tela de Venda
+	}
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered

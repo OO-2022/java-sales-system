@@ -13,6 +13,7 @@ package com.mycompany.javasalessystem.Frames;
 
 import com.mycompany.javasalessystem.Models.Admin;
 import com.mycompany.javasalessystem.Repositories.AdminRepository;
+import com.mycompany.javasalessystem.Utils.Session;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -32,10 +33,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
-/**
- *
- * @author Marcos Paulo
- */
 public class AdminFrame extends JFrame{
     private JPanel principal;
     private JPanel rightPanel;
@@ -106,7 +103,7 @@ public class AdminFrame extends JFrame{
         //Configuração da janela
         setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
-        setTitle("Olá, Marcos! Você é um administrador.");
+        setTitle("Olá, "+Session.getAdmin().getName()+"! Você é um administrador.");
         setLocationRelativeTo(null);
         
     }
