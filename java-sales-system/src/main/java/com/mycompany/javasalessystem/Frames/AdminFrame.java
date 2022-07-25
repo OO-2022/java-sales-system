@@ -11,27 +11,15 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 package com.mycompany.javasalessystem.Frames;
 
 
-import com.mycompany.javasalessystem.Models.Admin;
-import com.mycompany.javasalessystem.Repositories.AdminRepository;
 import com.mycompany.javasalessystem.Utils.Session;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import static java.awt.Component.BOTTOM_ALIGNMENT;
-import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class AdminFrame extends JFrame{
     private JPanel principal;

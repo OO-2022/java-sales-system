@@ -43,20 +43,17 @@ public class SellerRepository implements Repository{
         return null;
     }
     
-    public static Seller create(String name, String email, String password, String occupation) {
+    public static Seller create(String name, String email, String password, String occupation) throws Exception {
         if (Verifications.verifyName(name) == false) {
-            System.out.println("Nome invalido");
-            return null;
+            throw new Exception("Nome invalido");
         }
         
         if (Verifications.verifyEmail(email) == false) {
-            System.out.println("Email invalido");
-            return null;
+            throw new Exception("Email invalido");
         }
         
         if (password.length() < 8) {
-            System.out.println("Senha deve ter no minimo 8 caracteres");
-            return null;
+            throw new Exception("Senha deve ter no minimo 8 caracteres");
         }
         
         String sellerId = UUID.randomUUID().toString();
@@ -86,12 +83,11 @@ public class SellerRepository implements Repository{
         }
     }
     
-    public static void find(String id){
+    public static void find(String id) throws Exception{
         Seller seller = findById(id);
         
         if(seller == null){
-            System.out.println("Funcionario nao encontrado no sistema");
-            return;
+            throw new Exception("Funcionario nao encontrado no sistema");
         }
         
         System.out.println("ID seller: "+seller.getId());
@@ -102,21 +98,19 @@ public class SellerRepository implements Repository{
         System.out.println("");
     }
     
-    public static Seller update(String id, String name, String email, String password, String occupation){
+    public static Seller update(String id, String name, String email, String password, String occupation) throws Exception{
         if (Verifications.verifyEmail(email) == false) {
-            System.out.println("Email invalido");
-            return null;
+            throw new Exception("Email invalido");
         }
         
         if (password.length() < 8) {
-            System.out.println("Senha deve ter no minimo 8 caracteres");
-            return null;
+            throw new Exception("Senha deve ter no minimo 8 caracteres");
         }
         
         Seller seller = findById(id);
         
-        if (seller == null) {
-            return null;
+        if(seller == null){
+            throw new Exception("Funcionario nao encontrado no sistema");
         }
         
         String encryptPassword = Encrypt.hashMD5(password);
@@ -131,12 +125,11 @@ public class SellerRepository implements Repository{
         return seller;
     }
 
-    public static void delete(String id){
+    public static void delete(String id) throws Exception{
         Seller seller = findById(id);
         
         if(seller == null){
-            System.out.println("Funcionario nao encontrado no sistema");
-            return;
+            throw new Exception("Funcionario nao encontrado no sistema");
         }
         
         sellers.remove(seller);

@@ -42,10 +42,17 @@ public class ProductRepository implements Repository {
         return null;
     }
 
-    public static Product create(String name, double price, int quantity) {
+    public static Product create(String name, double price, int quantity) throws Exception {
         if (!Verifications.verifyName(name)) {
-            System.out.println("Nome invalido");
-            return null;
+            throw new Exception("Nome invalido");
+        }
+        
+        if (quantity < 0) {
+            throw new Exception("Quantidade invalida");
+        }
+        
+        if (price < 0) {
+            throw new Exception("Preco invalido");
         }
 
         String productId = UUID.randomUUID().toString();
@@ -74,12 +81,11 @@ public class ProductRepository implements Repository {
         }
     }
 
-    public static void find(String id){
+    public static void find(String id) throws Exception{
         Product product = findById(id);
 
         if(product == null){
-            System.out.println("Obtejo nao encontrado no sistema");
-            return;
+            throw new Exception("Produto nao encontrado no sistema");
         }
 
         System.out.println("Produto de ID: "+product.getId());
@@ -89,16 +95,23 @@ public class ProductRepository implements Repository {
         System.out.println("");
     }
 
-    public static Product update(String id, String name, double price, int quantity){
+    public static Product update(String id, String name, double price, int quantity) throws Exception{
         if (!Verifications.verifyName(name)) {
-            System.out.println("Nome invalido");
-            return null;
+            throw new Exception("Nome invalido");
+        }
+        
+        if (quantity < 0) {
+            throw new Exception("Quantidade invalida");
+        }
+        
+        if (price < 0) {
+            throw new Exception("Preco invalido");
         }
 
         Product product = findById(id);
 
-        if (product == null) {
-            return null;
+        if(product == null){
+            throw new Exception("Produto nao encontrado no sistema");
         }
 
         product.setName(name);
@@ -110,12 +123,11 @@ public class ProductRepository implements Repository {
         return product;
     }
 
-    public static void delete(String id){
+    public static void delete(String id) throws Exception{
         Product product = findById(id);
 
         if(product == null){
-            System.out.println("Obtejo nao encontrado no sistema");
-            return;
+            throw new Exception("Produto nao encontrado no sistema");
         }
 
         products.remove(product);

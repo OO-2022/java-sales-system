@@ -18,7 +18,6 @@ import javax.swing.JButton;
 
 public class AdminEvents implements MouseListener{
     private JButton button;
-
     
     public AdminEvents(JButton button) {
         this.button = button;

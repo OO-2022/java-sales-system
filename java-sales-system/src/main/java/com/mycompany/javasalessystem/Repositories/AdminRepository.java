@@ -14,11 +14,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mycompany.javasalessystem.Database.Database;
 import com.mycompany.javasalessystem.Models.Admin;
-import com.mycompany.javasalessystem.Utils.Encrypt;
 import com.mycompany.javasalessystem.Utils.Verifications;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class AdminRepository implements Repository {
@@ -44,20 +42,17 @@ public class AdminRepository implements Repository {
         return null;
     }
 
-    public static Admin create(String name, String email, String password, String occupation) {
+    public static Admin create(String name, String email, String password, String occupation) throws Exception {
         if (!Verifications.verifyName(name)) {
-            System.out.println("Nome invalido");
-            return null;
+            throw new Exception("Nome invalido");
         }
 
         if (!Verifications.verifyEmail(email)) {
-            System.out.println("Email invalido");
-            return null;
+            throw new Exception("Email invalido");
         }
 
         if (!Verifications.verifyPassword(password)) {
-            System.out.println("Senha deve ter no minimo 8 caracteres");
-            return null;
+            throw new Exception("Senha deve ter no minimo 8 caracteres");
         }
 
         String adminId = UUID.randomUUID().toString();
@@ -85,15 +80,14 @@ public class AdminRepository implements Repository {
                 System.out.println("Occupation: " + admin.getOccupation());
                 System.out.println("");
             }
-    }
+        }
     }
 
-    public static void find(String id) {
+    public static void find(String id) throws Exception {
         Admin admin = findById(id);
 
         if (admin == null) {
-            System.out.println("Administrador nao encontrado no sistema");
-            return;
+            throw new Exception("Administrador nao encontrado no sistema");
         }
 
         System.out.println("ID admin: " + admin.getId());
@@ -104,26 +98,23 @@ public class AdminRepository implements Repository {
         System.out.println("");
     }
 
-    public static Admin update(String id, String name, String email, String password, String occupation) {
+    public static Admin update(String id, String name, String email, String password, String occupation) throws Exception {
         if (Verifications.verifyName(name) == false) {
-            System.out.println("Nome invalido");
-            return null;
+            throw new Exception("Nome invalido");
         }
 
         if (Verifications.verifyEmail(email) == false) {
-            System.out.println("Email invalido");
-            return null;
+            throw new Exception("Email invalido");
         }
 
         if (Verifications.verifyPassword(password) == false) {
-            System.out.println("Senha deve ter no minimo 8 caracteres");
-            return null;
+            throw new Exception("Senha deve ter no minimo 8 caracteres");
         }
 
         Admin admin = findById(id);
 
         if (admin == null) {
-            return null;
+            throw new Exception("Administrador nao encontrado no sistema");
         }
 
         admin.setName(name);
@@ -136,12 +127,11 @@ public class AdminRepository implements Repository {
         return admin;
     }
 
-    public static void delete(String id) {
+    public static void delete(String id) throws Exception {
         Admin admin = findById(id);
 
         if (admin == null) {
-            System.out.println("Administrador nao encontrado no sistema");
-            return;
+            throw new Exception("Administrador nao encontrado no sistema");
         }
 
         admins.remove(admin);

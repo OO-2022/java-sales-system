@@ -15,6 +15,8 @@ import com.mycompany.javasalessystem.Repositories.ProductRepository;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -42,7 +44,11 @@ public class ProductEvents implements MouseListener {
                 int quantity = Integer.parseInt(frame.getTfQuantity().getText());
                 double price = Double.parseDouble(frame.getTfPrice().getText());
                 
+            try {
                 model.addElement(ProductRepository.create(name, price, quantity));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
 
                 frame.getList().setModel(model);
                 frame.repaint();
@@ -58,7 +64,11 @@ public class ProductEvents implements MouseListener {
                     product.setQuantity(Integer.parseInt(frame.getTfQuantity().getText()));
                     product.setPrice(Double.parseDouble(frame.getTfPrice().getText()));
                     
-                    ProductRepository.update(product.getId(), product.getName(), product.getPrice(), product.getQuantity());
+                    try {
+                        ProductRepository.update(product.getId(), product.getName(), product.getPrice(), product.getQuantity());
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, ex);
+                    }
                     
                     frame.repaint();
                 }
@@ -77,7 +87,11 @@ public class ProductEvents implements MouseListener {
                     Product product = model.get(selectedIndex);
                     model.removeElementAt(selectedIndex);
                     frame.getList().setModel(model);
-                    ProductRepository.delete(product.getId());
+                    try {
+                        ProductRepository.delete(product.getId());
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, ex);
+                    }
                                 
                     frame.repaint();
                 }

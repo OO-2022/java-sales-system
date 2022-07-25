@@ -45,20 +45,17 @@ public class ClientRepository implements Repository {
         return null;
     }
 
-    public static Client create(String name, String cpf, String email, String phone, String cep) {
+    public static Client create(String name, String cpf, String email, String phone, String cep) throws Exception {
         if (Verifications.verifyName(name) == false) {
-            System.out.println("Nome invalido");
-            return null;
+            throw new Exception("Nome invalido");
         }
         
         if (Verifications.verifyEmail(email) == false) {
-            System.out.println("Email invalido");
-            return null;
+            throw new Exception("Email invalido");
         }
         
         if (Verifications.verifyCPF(cpf) == false) {
-            System.out.println("CPF invalido");
-            return null;
+            throw new Exception("CPF invalido");
         }
         
         String clientId = UUID.randomUUID().toString();
@@ -107,21 +104,19 @@ public class ClientRepository implements Repository {
         System.out.println("-- ** --");
     }
 
-    public static Client update(String id, String name, String cpf, String email, String phone, String cep) {
+    public static Client update(String id, String name, String cpf, String email, String phone, String cep) throws Exception {
         if (Verifications.verifyName(name) == false) {
-            System.out.println("Nome invalido");
-            return null;
+            throw new Exception("Nome invalido");
         }
         
         if (Verifications.verifyEmail(email) == false) {
-            System.out.println("Email invalido");
-            return null;
+            throw new Exception("Email invalido");
         }
         
         Client client = findById(id);
 
         if (client == null) {
-            return null;
+            throw new Exception("Cliente nao encontrado no sistema");
         }
 
         client.setName(name);
@@ -135,11 +130,11 @@ public class ClientRepository implements Repository {
         return client;
     }
     
-    public static void delete(String id) {
+    public static void delete(String id) throws Exception {
         Client client = findById(id);
 
         if (client == null) {
-            System.out.println("Client nao encontrado no sistema");
+            throw new Exception("Client nao encontrado no sistema");
         }
 
         clients.remove(client);

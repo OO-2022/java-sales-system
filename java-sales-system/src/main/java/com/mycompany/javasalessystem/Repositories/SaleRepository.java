@@ -41,18 +41,18 @@ public class SaleRepository implements Repository{
         return null;
     }
 
-    public static Sale create(String cpf) throws ParseException {
+    public static Sale create(String cpf) throws ParseException, Exception {
         Client client = ClientRepository.findByCpf(cpf);
         
         if(client == null){
-            System.err.println("Cliente nao cadastrado no sistema");
-            return null;
+            throw new Exception("Cliente nao cadastrado no sistema");
         }
         
         String saleId = UUID.randomUUID().toString();
         
         //Date formattedDate = ConversionToDate.conversionToDate(date);
         
+        //Data do sistema
         Date in = new Date();
         LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
         Date formattedDate = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
@@ -90,13 +90,12 @@ public class SaleRepository implements Repository{
         }
     }
     
-    public static void find(String id) throws ParseException {
+    public static void find(String id) throws ParseException, Exception {
         Sale sale = findById(id);
         ArrayList<Product> products = sale.getProducts();
 
         if (sale == null) {
-            System.out.println("Venda nao encontrada no sistema");
-            return;
+            throw new Exception("Venda nao encontrada no sistema");
         }
         
         System.out.println("ID: " + sale.getId());
@@ -112,13 +111,12 @@ public class SaleRepository implements Repository{
         System.out.println("");
     }
     
-    public static void listProducts(String id) throws ParseException {
+    public static void listProducts(String id) throws ParseException, Exception {
         Sale sale = findById(id);
         ArrayList<Product> products = sale.getProducts();
 
         if (sale == null) {
-            System.out.println("Venda nao encontrada no sistema");
-            return;
+            throw new Exception("Venda nao encontrada no sistema");
         }
             
         for(int i = 0; i < products.size(); i++){
@@ -131,19 +129,17 @@ public class SaleRepository implements Repository{
     }
 
 
-    public static Sale update(String id, String idClient) throws ParseException {
+    public static Sale update(String id, String idClient) throws ParseException, Exception {
         Sale sale = SaleRepository.findById(id);
         
-        if(sale == null){
-            System.err.println("Venda nao cadastrada no sistema");
-            return null;
+        if (sale == null) {
+            throw new Exception("Venda nao encontrada no sistema");
         }
         
         Client client = ClientRepository.findById(idClient);
         
         if(client == null){
-            System.err.println("Cliente nao cadastrado no sistema");
-            return null;
+            throw new Exception("Cliente nao cadastrado no sistema");
         }
 
         sale.setIdClient(idClient);
@@ -153,12 +149,11 @@ public class SaleRepository implements Repository{
         return sale;
     }
 
-    public static void delete(String id) {
+    public static void delete(String id) throws Exception {
         Sale sale = findById(id);
 
         if (sale == null) {
-            System.out.println("Venda nao encontrada na sistema");
-            return;
+            throw new Exception("Venda nao encontrada no sistema");
         }
 
         sales.remove(sale);

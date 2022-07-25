@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class SellerView {
 
-    public static void viewSellerOptionsSwitch(int option) throws ParseException, CloneNotSupportedException {
+    public static void viewSellerOptionsSwitch(int option) throws ParseException, CloneNotSupportedException, Exception {
         Scanner teclado = new Scanner(System.in);
         
         switch (option) {
@@ -43,7 +43,7 @@ public class SellerView {
         
     }
     
-    public static Seller sellerCreationForm() {
+    public static Seller sellerCreationForm() throws Exception {
         Scanner teclado = new Scanner(System.in);
 
         System.out.println("Nome do Funcionario: ");
