@@ -45,6 +45,7 @@ public class SellerFrame extends JFrame{
     JLabel occupation;
     JTextField tfOccupation;
     Border lineBorder;
+    
     //Getters e setters
     public JPanel getPrincipal() {
         return principal;
@@ -182,6 +183,7 @@ public class SellerFrame extends JFrame{
         
         principal.add(rightPanel, BorderLayout.EAST);
     }
+    
     private void configMidGap(JPanel midGap){
         //topPanel
         JPanel topPanel = new JPanel();
@@ -257,6 +259,7 @@ public class SellerFrame extends JFrame{
         midGap.add(centerPanel);
         midGap.add(bottomPanel);
     }
+    
     private void configLeftPanel() {
         JPanel leftPanel = new JPanel();
         leftPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Vendedores"));
