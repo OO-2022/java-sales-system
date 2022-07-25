@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mycompany.javasalessystem.Database.Database;
 import com.mycompany.javasalessystem.Models.Seller;
+import com.mycompany.javasalessystem.Utils.Encrypt;
 import com.mycompany.javasalessystem.Utils.Verifications;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -118,9 +119,11 @@ public class SellerRepository implements Repository{
             return null;
         }
         
+        String encryptPassword = Encrypt.hashMD5(password);
+        
         seller.setName(name);
         seller.setEmail(email);
-        seller.setPassword(password); 
+        seller.setPassword(encryptPassword); 
         seller.setOccupation(occupation);
         
         new SellerRepository().save();

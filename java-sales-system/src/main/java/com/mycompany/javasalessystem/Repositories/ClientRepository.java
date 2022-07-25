@@ -19,7 +19,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class ClientRepository {
+public class ClientRepository implements Repository {
 
     private static final String FILE_NAME = "clients.json";
 

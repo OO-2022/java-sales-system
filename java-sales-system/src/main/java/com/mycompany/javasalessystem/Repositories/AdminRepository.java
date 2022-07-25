@@ -14,16 +14,25 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mycompany.javasalessystem.Database.Database;
 import com.mycompany.javasalessystem.Models.Admin;
+import com.mycompany.javasalessystem.Utils.Encrypt;
 import com.mycompany.javasalessystem.Utils.Verifications;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
-public class AdminRepository {
+public class AdminRepository implements Repository {
 
     private static final String FILE_NAME = "admins.json";
 
     private static ArrayList<Admin> admins = new ArrayList<>();
+    
+    public AdminRepository() {
+    }
+    
+    public static ArrayList<Admin> getAdmins() {
+        return admins;
+    }
 
     public static Admin findById(String id) {
         for (Admin admin : admins) {

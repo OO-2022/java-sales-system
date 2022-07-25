@@ -93,7 +93,7 @@ public class Verifications {
 */
 
     public static boolean verifyName(String name) {
-        return name.length() != 0;
+        return name.length() > 0;
     }
 
     public static boolean verifyPassword(String password) {

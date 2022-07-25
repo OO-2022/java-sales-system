@@ -8,14 +8,14 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 */
 
-package com.mycompany.javasalessystem.Frames;
+package com.mycompany.javasalessystem.Frames.Login;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Window;
 import javax.swing.*;
 
-public class TelaLogin extends JFrame{
+public class TelaLoginxxx extends JFrame{
     
     private JPanel panel;
     private JButton login;
@@ -26,7 +26,7 @@ public class TelaLogin extends JFrame{
     private JTextField tfUser;
     private int lastIndex;
     
-    public TelaLogin() {
+    public TelaLoginxxx() {
         this.lastIndex = 0;
     }
     
@@ -84,10 +84,10 @@ public class TelaLogin extends JFrame{
         brand.setText("PAPELARIA ORIENTAÇÃO&OBJETOS");
         password.setText("Senha");
         login.setText("Entrar");
-        login.addActionListener(new LoginEvent(this));
+        login.addActionListener(new LoginEventxxx(this));
         
         //Layout
-            setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+        setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
         brand.setAlignmentX(CENTER_ALIGNMENT);
         brand.setAlignmentY(BOTTOM_ALIGNMENT);
         user.setAlignmentX(CENTER_ALIGNMENT);
@@ -107,7 +107,7 @@ public class TelaLogin extends JFrame{
     }
 
     public static void main(String[] args) {
-        TelaLogin tela = new TelaLogin();
+        TelaLoginxxx tela = new TelaLoginxxx();
         tela.montaTela();
     }
 }

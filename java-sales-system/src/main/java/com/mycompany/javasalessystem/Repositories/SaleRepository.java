@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-public class SaleRepository {
+public class SaleRepository implements Repository{
 
     private static final String FILE_NAME = "sales.json";
 

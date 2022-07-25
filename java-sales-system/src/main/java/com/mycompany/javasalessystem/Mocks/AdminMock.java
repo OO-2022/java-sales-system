@@ -15,7 +15,7 @@ import com.mycompany.javasalessystem.Repositories.AdminRepository;
 
 public class AdminMock {
     public static void createAdmin() {
-        Admin admin = AdminRepository.create("Gabriella Carvalho", "gabriella@gmail.com", "123456789abc", "Admin");
+        Admin admin = AdminRepository.create("Gabriella Carvalho", "gabriella@gmail.com", "gabriella123", "Admin");
     }
 
     public static void updateAdmin() {
