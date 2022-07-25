@@ -19,10 +19,18 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class SellerRepository {
+public class SellerRepository implements Repository{
     private static final String FILE_NAME = "sellers.json";
 
     private static ArrayList<Seller> sellers = new ArrayList<>();
+    
+    public SellerRepository() {
+    }
+    
+    public static ArrayList<Seller> getSellers() {
+        return sellers;
+    }
+    
     
     public static Seller findById(String id){
         for(Seller seller: sellers){

@@ -4,6 +4,7 @@
  */
 package com.mycompany.javasalessystem.Frames;
 
+import com.mycompany.javasalessystem.Frames.Seller.SellerFrame;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -24,7 +25,8 @@ public class AdminEvents implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         if (button.getText().equals("Cadastrar funcionário")){
-            
+            SellerFrame telaSeller = new SellerFrame();
+            telaSeller.montaTela();
         }
         else if (button.getText().equals("Cadastrar cliente")){
             

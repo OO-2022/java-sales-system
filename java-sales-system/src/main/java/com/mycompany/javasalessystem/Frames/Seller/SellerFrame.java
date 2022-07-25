@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.javasalessystem.Frames;
+package com.mycompany.javasalessystem.Frames.Seller;
 
-import com.mycompany.javasalessystem.Models.Product;
+import com.mycompany.javasalessystem.Models.Seller;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -26,7 +27,7 @@ import javax.swing.border.Border;
  *
  * @author Marcos Paulo
  */
-public class ProductFrame extends JFrame{
+public class SellerFrame extends JFrame{
     
     private JPanel principal;
     private JPanel rightPanel;
@@ -37,11 +38,14 @@ public class ProductFrame extends JFrame{
     JTextField tfId;
     JLabel name;
     JTextField tfName;
-    JLabel quantity;
-    JTextField tfQuantity;
-    JLabel price;
-    JTextField tfPrice;
+    JLabel email;
+    JTextField tfEmail;
+    JLabel password;
+    JPasswordField tfPassword;
+    JLabel occupation;
+    JTextField tfOccupation;
     Border lineBorder;
+    
     //Getters e setters
     public JPanel getPrincipal() {
         return principal;
@@ -91,39 +95,51 @@ public class ProductFrame extends JFrame{
     public void setTfName(JTextField tfName) {
         this.tfName = tfName;
     }
-    public JLabel getQuantity() {
-        return quantity;
+    public JLabel getEmail() {
+        return email;
     }
-    public void setQuantity(JLabel quantity) {
-        this.quantity = quantity;
+    public void setEmail(JLabel email) {
+        this.email = email;
     }
-    public JTextField getTfQuantity() {
-        return tfQuantity;
+    public JTextField getTfEmail() {
+        return tfEmail;
     }
-    public void setTfQuantity(JTextField tfQuantity) {
-        this.tfQuantity = tfQuantity;
+    public void setTfEmail(JTextField tfEmail) {
+        this.tfEmail = tfEmail;
     }
-    public JLabel getPrice() {
-        return price;
+    public JLabel getPassword() {
+        return password;
     }
-    public void setPrice(JLabel price) {
-        this.price = price;
+    public void setPassword(JLabel password) {
+        this.password = password;
     }
-    public JTextField getTfPrice() {
-        return tfPrice;
+    public JTextField getTfPassword() {
+        return tfPassword;
     }
-    public void setTfPrice(JTextField tfPrice) {
-        this.tfPrice = tfPrice;
+    public void setTfPassword(JPasswordField tfPassword) {
+        this.tfPassword = tfPassword;
+    }
+    public JLabel getOccupation() {
+        return occupation;
+    }
+    public void setOccupation(JLabel occupation) {
+        this.occupation = occupation;
+    }
+    public JTextField getTfOccupation() {
+        return tfOccupation;
+    }
+    public void setTfOccupation(JTextField tfOccupation) {
+        this.tfOccupation = tfOccupation;
     }
 
-    public ProductFrame() {
+    public SellerFrame() {
          lineBorder = BorderFactory.createLineBorder(new Color(75, 134, 115));
     }
     
     private void configuraJanela() {
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Administração de estoque");
+        setTitle("Controle de Vendedores");
         setResizable(false);
         setLocationRelativeTo(null);
         
@@ -131,16 +147,16 @@ public class ProductFrame extends JFrame{
         principal.setLayout(new BorderLayout());
         principal.setBackground(new Color(249, 254, 248));
         
-        DefaultListModel<Product> model = new DefaultListModel<>();
+        DefaultListModel<Seller> model = new DefaultListModel<>();
         list = new JList<>(model);
         
-        this.addWindowListener(new ProductWindowEvents(this));
+        this.addWindowListener(new SellerWindowEvents(this));
     }
 
     private void configRightPanel() {
         //painel com 3 subdivisoes
         rightPanel = new JPanel();
-        rightPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Produto"));
+        rightPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Vendedor"));
         rightPanel.setLayout(new FlowLayout(0, 0, 0));
         rightPanel.setPreferredSize(new Dimension(350, 400));
         rightPanel.setBackground(new Color(246, 251, 244));
@@ -167,10 +183,11 @@ public class ProductFrame extends JFrame{
         
         principal.add(rightPanel, BorderLayout.EAST);
     }
+    
     private void configMidGap(JPanel midGap){
         //topPanel
         JPanel topPanel = new JPanel();
-        topPanel.setLayout(new GridLayout(4,2,10,0));
+        topPanel.setLayout(new GridLayout(0,2));
         topPanel.setPreferredSize(new Dimension(300, 100));
         topPanel.setBackground(new Color(246, 251, 244));
         
@@ -178,20 +195,24 @@ public class ProductFrame extends JFrame{
         tfId = new JTextField();
         name = new JLabel("Name");
         tfName = new JTextField();
-        quantity = new JLabel("Quantity");
-        tfQuantity = new JTextField();
-        price = new JLabel("Price");
-        tfPrice = new JTextField();
-
+        email = new JLabel("Email");
+        tfEmail = new JTextField();
+        password = new JLabel("Password");
+        tfPassword = new JPasswordField();
+        occupation = new JLabel("Occupation");
+        tfOccupation = new JTextField();
+        
         //adicionando cada componente em ordem pré-determinada
         topPanel.add(id);
-        topPanel.add(name);
         topPanel.add(tfId);
+        topPanel.add(name);
         topPanel.add(tfName);
-        topPanel.add(quantity);
-        topPanel.add(price);
-        topPanel.add(tfQuantity);
-        topPanel.add(tfPrice);
+        topPanel.add(email);
+        topPanel.add(tfEmail);
+        topPanel.add(password);
+        topPanel.add(tfPassword);
+        topPanel.add(occupation);
+        topPanel.add(tfOccupation);
         
         //centerPanel
         JPanel centerPanel = new JPanel();
@@ -203,25 +224,25 @@ public class ProductFrame extends JFrame{
         adicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         adicionar.setBackground(Color.WHITE);
         adicionar.setForeground(Color.black);
-        adicionar.addMouseListener(new ProductEvents(this, adicionar));
+        adicionar.addMouseListener(new SellerEvents(this, adicionar));
         
         JButton editar = new JButton("Editar");
         editar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editar.setBackground(Color.WHITE);
         editar.setForeground(Color.black);
-        editar.addMouseListener(new ProductEvents(this, editar));
+        editar.addMouseListener(new SellerEvents(this, editar));
         
         JButton limpar = new JButton("Limpar");
         limpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         limpar.setBackground(Color.WHITE);
         limpar.setForeground(Color.black);
-        limpar.addMouseListener(new ProductEvents(this, limpar));
+        limpar.addMouseListener(new SellerEvents(this, limpar));
         
         JButton remover = new JButton("Remover");
         remover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         remover.setBackground(Color.WHITE);
         remover.setForeground(Color.black);
-        remover.addMouseListener(new ProductEvents(this, remover));
+        remover.addMouseListener(new SellerEvents(this, remover));
         
         centerPanel.add(adicionar);
         centerPanel.add(editar);
@@ -238,16 +259,17 @@ public class ProductFrame extends JFrame{
         midGap.add(centerPanel);
         midGap.add(bottomPanel);
     }
+    
     private void configLeftPanel() {
         JPanel leftPanel = new JPanel();
-        leftPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Estoque"));
+        leftPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Vendedores"));
         leftPanel.setLayout(new BorderLayout());
         leftPanel.setPreferredSize(new Dimension(230, 330));
         leftPanel.setBackground(new Color(246, 251, 244));
 
         list.setVisible(true);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.addListSelectionListener(new ProductListEvent(this));
+        list.addListSelectionListener(new SellerListEvent(this));
         leftPanel.add(new JScrollPane(list), BorderLayout.CENTER);
         
         principal.add(leftPanel, BorderLayout.WEST);
@@ -266,7 +288,7 @@ public class ProductFrame extends JFrame{
     }
 
     public static void main(String[] args) {
-        ProductFrame tela = new ProductFrame();
+        SellerFrame tela = new SellerFrame();
         tela.montaTela();
     }
 }

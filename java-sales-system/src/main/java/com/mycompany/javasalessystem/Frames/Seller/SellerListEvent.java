@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.javasalessystem.Frames;
+package com.mycompany.javasalessystem.Frames.Seller;
 
-import com.mycompany.javasalessystem.Models.Product;
+import com.mycompany.javasalessystem.Models.Seller;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -12,11 +12,11 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Marcos Paulo
  */
-public class ListEvent implements ListSelectionListener {
+public class SellerListEvent implements ListSelectionListener {
 
-    ProductFrame tela;
+    SellerFrame tela;
 
-    public ListEvent(ProductFrame tela) {
+    public SellerListEvent(SellerFrame tela) {
         this.tela = tela;
     }
 
@@ -25,11 +25,12 @@ public class ListEvent implements ListSelectionListener {
         int firstIndex = tela.getList().getSelectedIndex();
 
         if (firstIndex != -1) {
-            Product elementAt = (Product) tela.getList().getModel().getElementAt(firstIndex);
+            Seller elementAt = (Seller) tela.getList().getModel().getElementAt(firstIndex);
             tela.getTfId().setText(elementAt.getId());
             tela.getTfName().setText(elementAt.getName());
-            tela.getTfQuantity().setText(String.valueOf(elementAt.getQuantity()));
-            tela.getTfPrice().setText(String.valueOf(elementAt.getPrice()));
+            tela.getTfEmail().setText(elementAt.getEmail());
+            tela.getTfPassword().setText(elementAt.getPassword());
+            tela.getTfOccupation().setText(elementAt.getOccupation());
         }
     }
 
