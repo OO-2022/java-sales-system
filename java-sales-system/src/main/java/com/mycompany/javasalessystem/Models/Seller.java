@@ -26,4 +26,9 @@ public class Seller extends User {
         this.occupation = occupation;
     }
     
+    @Override
+    public String toString(){
+        return getName();
+    }
+    
 }

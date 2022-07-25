@@ -189,7 +189,7 @@ public class SellerFrame extends JFrame{
     private void configMidGap(JPanel midGap){
         //topPanel
         JPanel topPanel = new JPanel();
-        topPanel.setLayout(new GridLayout(0,2));
+        topPanel.setLayout(new GridLayout(5,2,1,2));
         topPanel.setPreferredSize(new Dimension(300, 100));
         topPanel.setBackground(new Color(246, 251, 244));
         
