@@ -59,6 +59,7 @@ public class Product implements Cloneable{
     public Product clone() throws CloneNotSupportedException { 
         return (Product)super.clone(); 
     }
+    
     @Override
     public String toString(){
         return name;
