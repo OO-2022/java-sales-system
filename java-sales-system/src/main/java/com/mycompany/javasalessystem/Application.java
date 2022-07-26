@@ -23,8 +23,8 @@ public class Application {
         
         System.out.println("Bem-vindo(a) a papelaria Orientacao&Objetos");
         
-        //MainView.index();
-        AdminMock.createAdmin();
+        MainView.index();
+        //AdminMock.createAdmin();
     }
 }
 

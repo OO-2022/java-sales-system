@@ -1,7 +1,13 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+@authors
+
+Aluna: Gabriella Carvalho                  Matrícula: 202165047A
+Aluno: Marcos Paulo Rodrigues da Silva     Matrícula: 202165556C
+Aluno: Rafael de Oliveira Vargas           Matrícula: 202035022
+Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
+
+*/
+
 package com.mycompany.javasalessystem.Frames.Login;
 
 import com.mycompany.javasalessystem.Frames.AdminFrame;
@@ -11,10 +17,6 @@ import com.mycompany.javasalessystem.Utils.Session;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Marcos Paulo
- */
 public class Login extends javax.swing.JFrame {
 
     /**

@@ -16,7 +16,7 @@ import java.text.ParseException;
 
 public class MainView {
 
-    public static void index() throws ParseException, CloneNotSupportedException {
+    public static void index() throws ParseException, CloneNotSupportedException, Exception {
         Scanner teclado = new Scanner(System.in);
 
         System.out.println("Selecione o que deseja fazer: ");

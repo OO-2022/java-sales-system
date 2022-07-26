@@ -30,6 +30,7 @@ public class SellerListEvent implements ListSelectionListener {
             Seller elementAt = (Seller) tela.getList().getModel().getElementAt(firstIndex);
             tela.getTfId().setText(elementAt.getId());
             tela.getTfName().setText(elementAt.getName());
+            tela.getTfCpf().setText(elementAt.getCpf());
             tela.getTfEmail().setText(elementAt.getEmail());
             tela.getTfPassword().setText(elementAt.getPassword());
             tela.getTfOccupation().setText(elementAt.getOccupation());

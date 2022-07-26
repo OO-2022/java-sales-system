@@ -13,8 +13,8 @@ package com.mycompany.javasalessystem.Models;
 public class Seller extends User {
     private String occupation;
 
-    public Seller(String id, String name, String email, String password, String occupation) {
-        super(id, name, email, password);
+    public Seller(String id, String name, String email, String password, String occupation, String cpf) {
+        super(id, name, email, password, cpf);
         this.occupation = occupation;
     }
 

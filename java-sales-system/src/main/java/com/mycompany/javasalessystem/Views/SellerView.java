@@ -58,7 +58,10 @@ public class SellerView {
         System.out.println("Cargo do Funcionario: ");
         String occupation = teclado.nextLine();
         
-        Seller seller = SellerRepository.create(name, email, password, occupation);
+        System.out.println("Cpf do Funcionario: ");
+        String cpf = teclado.nextLine();
+        
+        Seller seller = SellerRepository.create(name, email, password, occupation, cpf);
         return seller;
     }
 }

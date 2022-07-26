@@ -43,7 +43,7 @@ public class SellerRepository implements Repository{
         return null;
     }
     
-    public static Seller create(String name, String email, String password, String occupation) throws Exception {
+    public static Seller create(String name, String email, String password, String occupation, String cpf) throws Exception {
         if (Verifications.verifyName(name) == false) {
             throw new Exception("Nome invalido");
         }
@@ -56,9 +56,13 @@ public class SellerRepository implements Repository{
             throw new Exception("Senha deve ter no minimo 8 caracteres");
         }
         
+        if (Verifications.verifyCPF(cpf) == false) {
+            throw new Exception("CPF invalido");
+        }
+        
         String sellerId = UUID.randomUUID().toString();
         
-        Seller seller = new Seller(sellerId, name, email, password, occupation);
+        Seller seller = new Seller(sellerId, name, email, password, occupation, cpf);
         
         sellers.add(seller);
         
@@ -79,6 +83,7 @@ public class SellerRepository implements Repository{
             System.out.println("Email: "+seller.getEmail());
             System.out.println("Senha: "+seller.getPassword()); 
             System.out.println("Occupation: "+seller.getOccupation());
+            System.out.println("CPF: "+seller.getCpf());
             System.out.println("-- ** --");
         }
     }
@@ -95,10 +100,17 @@ public class SellerRepository implements Repository{
         System.out.println("Email: "+seller.getEmail());
         System.out.println("Senha: "+seller.getPassword()); 
         System.out.println("Occupation: "+seller.getOccupation());
+        System.out.println("CPF: "+seller.getCpf());
         System.out.println("");
     }
     
-    public static Seller update(String id, String name, String email, String password, String occupation) throws Exception{
+    public static Seller update(String id, String name, String email, String password, String occupation, String cpf) throws Exception{
+        Seller seller = findById(id);
+        
+        if(seller == null){
+            throw new Exception("Funcionario nao encontrado no sistema");
+        }
+        
         if (Verifications.verifyEmail(email) == false) {
             throw new Exception("Email invalido");
         }
@@ -107,10 +119,8 @@ public class SellerRepository implements Repository{
             throw new Exception("Senha deve ter no minimo 8 caracteres");
         }
         
-        Seller seller = findById(id);
-        
-        if(seller == null){
-            throw new Exception("Funcionario nao encontrado no sistema");
+        if (Verifications.verifyCPF(cpf) == false) {
+            throw new Exception("CPF invalido");
         }
         
         String encryptPassword = Encrypt.hashMD5(password);
@@ -119,6 +129,7 @@ public class SellerRepository implements Repository{
         seller.setEmail(email);
         seller.setPassword(encryptPassword); 
         seller.setOccupation(occupation);
+        seller.setCpf(cpf);
         
         new SellerRepository().save();
         

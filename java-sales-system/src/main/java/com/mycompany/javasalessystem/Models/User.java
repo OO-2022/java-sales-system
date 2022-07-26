@@ -17,14 +17,16 @@ public abstract class User {
     private String name;
     private String email;
     private String password;
+    private String cpf;
 
-    public User(String id, String name, String email, String password) {
+    public User(String id, String name, String email, String password, String cpf) {
         String encryptPassword = Encrypt.hashMD5(password);
         
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = encryptPassword;
+        this.cpf = cpf;
     }
 
     public String getId() {
@@ -57,6 +59,14 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
     
 }
