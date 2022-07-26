@@ -24,6 +24,13 @@ public class ClientRepository implements Repository {
     private static final String FILE_NAME = "clients.json";
 
     private static ArrayList<Client> clients = new ArrayList<>();
+    
+    public ClientRepository() {
+    }
+    
+    public static ArrayList<Client> getClients() {
+        return clients;
+    }
 
     public static Client findById(String id) {
         for (Client client : clients) {
