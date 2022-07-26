@@ -10,6 +10,7 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 package com.mycompany.javasalessystem.Frames;
 
+import com.mycompany.javasalessystem.Frames.Client.ClientFrame;
 import com.mycompany.javasalessystem.Frames.Seller.SellerFrame;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -30,7 +31,8 @@ public class AdminEvents implements MouseListener{
             telaSeller.montaTela();
         }
         else if (button.getText().equals("Cadastrar cliente")){
-            
+            ClientFrame telaClient = new ClientFrame();
+            telaClient.montaTela();
         }
         else if (button.getText().equals("Gerenciar estoque")){
             ProductFrame telaProduct = new ProductFrame();

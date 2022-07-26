@@ -28,6 +28,7 @@ public class AdminFrame extends JFrame{
     
     private JButton btnSeller;
     private JButton btnClient;
+    
     private JButton btnProduct;
     private JButton btnSale;
     private JLabel brand;
