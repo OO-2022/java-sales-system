@@ -15,11 +15,11 @@ import com.mycompany.javasalessystem.Repositories.AdminRepository;
 
 public class AdminMock {
     public static void createAdmin() throws Exception {
-        Admin admin = AdminRepository.create("fdsd", "gabriella@gmail.com", "gabriella123", "Admin");
+        Admin admin = AdminRepository.create("Gabriella Carvalho", "gabriella@gmail.com", "gabriella123", "Admin", "10301202699");
     }
 
     public static void updateAdmin() throws Exception {
-        Admin admin = AdminRepository.update("5f3ed3bb-b6fd-4f47-836e-c343bd2e8fa7","Rafael Vargas", "vargasrafael@gmail.com", "203698777**abc", "Admin");
+        Admin admin = AdminRepository.update("5f3ed3bb-b6fd-4f47-836e-c343bd2e8fa7","Rafael Vargas", "vargasrafael@gmail.com", "203698777**abc", "Admin", "10301202699");
     }
 
     public static void listdmin() {

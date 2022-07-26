@@ -46,6 +46,8 @@ public class SellerFrame extends JFrame{
     JPasswordField tfPassword;
     JLabel occupation;
     JTextField tfOccupation;
+    JLabel cpf;
+    JTextField tfCpf;
     Border lineBorder;
     
     //Getters e setters
@@ -133,13 +135,25 @@ public class SellerFrame extends JFrame{
     public void setTfOccupation(JTextField tfOccupation) {
         this.tfOccupation = tfOccupation;
     }
+    public JLabel getCpf() {
+        return cpf;
+    }
+    public void setCpf(JLabel cpf) {
+        this.cpf = cpf;
+    }
+    public JTextField getTfCpf() {
+        return tfCpf;
+    }
+    public void setTfCpf(JTextField tfCpf) {
+        this.tfCpf = tfCpf;
+    }
 
     public SellerFrame() {
          lineBorder = BorderFactory.createLineBorder(new Color(75, 134, 115));
     }
     
     private void configuraJanela() {
-        setSize(600, 400);
+        setSize(700, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Controle de Vendedores");
         setResizable(false);
@@ -160,23 +174,27 @@ public class SellerFrame extends JFrame{
         rightPanel = new JPanel();
         rightPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Vendedor"));
         rightPanel.setLayout(new FlowLayout(0, 0, 0));
-        rightPanel.setPreferredSize(new Dimension(350, 400));
+        rightPanel.setPreferredSize(new Dimension(400, 400));
         rightPanel.setBackground(new Color(246, 251, 244));
+        //rightPanel.setBackground(Color.BLACK);
                 
         JPanel leftGap = new JPanel();
-        leftGap.setPreferredSize(new Dimension(10, 330));
+        leftGap.setPreferredSize(new Dimension(30, 330));
         leftGap.setBackground(new Color(246, 251, 244));
+        //leftGap.setBackground(Color.LIGHT_GRAY);
         
         //painel central com as informações
         JPanel midGap = new JPanel();
-        midGap.setPreferredSize(new Dimension(320, 330));
+        midGap.setPreferredSize(new Dimension(330, 400));
         midGap.setBackground(new Color(246, 251, 244));
-        midGap.setLayout(new GridLayout(3,1,5,20));
+        //midGap.setBackground(Color.BLUE);
+        midGap.setLayout(new GridLayout(2,1,40,40));
         configMidGap(midGap);
         
         JPanel rightGap = new JPanel();
-        rightGap.setPreferredSize(new Dimension(10, 330));
+        rightGap.setPreferredSize(new Dimension(30, 330));
         rightGap.setBackground(new Color(246, 251, 244));
+        //rightGap.setBackground(Color.GRAY);
         rightGap.setVisible(true);
         
         rightPanel.add(leftGap);
@@ -189,14 +207,18 @@ public class SellerFrame extends JFrame{
     private void configMidGap(JPanel midGap){
         //topPanel
         JPanel topPanel = new JPanel();
-        topPanel.setLayout(new GridLayout(5,2,1,2));
+        topPanel.setLayout(new GridLayout(6,2,1,2));
         topPanel.setPreferredSize(new Dimension(300, 100));
         topPanel.setBackground(new Color(246, 251, 244));
+        //topPanel.setBackground(Color.YELLOW);
         
         id = new JLabel("ID");
         tfId = new JTextField();
+        tfId.setEditable(false);
         name = new JLabel("Name");
         tfName = new JTextField();
+        cpf = new JLabel("Cpf");
+        tfCpf = new JTextField();
         email = new JLabel("Email");
         tfEmail = new JTextField();
         password = new JLabel("Password");
@@ -204,11 +226,14 @@ public class SellerFrame extends JFrame{
         occupation = new JLabel("Occupation");
         tfOccupation = new JTextField();
         
+        
         //adicionando cada componente em ordem pré-determinada
         topPanel.add(id);
         topPanel.add(tfId);
         topPanel.add(name);
         topPanel.add(tfName);
+        topPanel.add(cpf);
+        topPanel.add(tfCpf);
         topPanel.add(email);
         topPanel.add(tfEmail);
         topPanel.add(password);
@@ -218,9 +243,10 @@ public class SellerFrame extends JFrame{
         
         //centerPanel
         JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new GridLayout(2,2,25,20));
+        centerPanel.setLayout(new GridLayout(2,2,15,15));
         centerPanel.setPreferredSize(new Dimension(300, 10));
         centerPanel.setBackground(new Color(246, 251, 244));
+        //centerPanel.setBackground(Color.MAGENTA);
         
         JButton adicionar = new JButton("Adicionar");
         adicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -254,20 +280,22 @@ public class SellerFrame extends JFrame{
         //bottomPanel
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(2,2,0,10));
-        bottomPanel.setPreferredSize(new Dimension(300, 100));
+        bottomPanel.setPreferredSize(new Dimension(10, 100));
         bottomPanel.setBackground(new Color(246, 251, 244));
+        //bottomPanel.setBackground(Color.PINK);
         
         midGap.add(topPanel);
         midGap.add(centerPanel);
-        midGap.add(bottomPanel);
+        //midGap.add(bottomPanel);
     }
     
     private void configLeftPanel() {
         JPanel leftPanel = new JPanel();
         leftPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Vendedores"));
         leftPanel.setLayout(new BorderLayout());
-        leftPanel.setPreferredSize(new Dimension(230, 330));
+        leftPanel.setPreferredSize(new Dimension(280, 330));
         leftPanel.setBackground(new Color(246, 251, 244));
+        //leftPanel.setBackground(Color.RED);
 
         list.setVisible(true);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

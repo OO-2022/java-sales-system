@@ -16,7 +16,7 @@ import com.mycompany.javasalessystem.Repositories.SellerRepository;
 
 public class SellerMock {
     public static void createSeller() throws Exception{
-        Seller seller = SellerRepository.create("Vilma Toledo", "vilma@gmail.com", "123456*", "Vendendora");
+        Seller seller = SellerRepository.create("Vilma Toledo", "vilma@gmail.com", "123456*", "Vendendora", "10301202699");
     }
 
     public static void updateSeller() throws Exception{

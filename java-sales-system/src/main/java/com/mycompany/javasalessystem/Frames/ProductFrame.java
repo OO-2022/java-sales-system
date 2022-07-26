@@ -178,6 +178,7 @@ public class ProductFrame extends JFrame{
         
         id = new JLabel("ID");
         tfId = new JTextField();
+        tfId.setEditable(false);
         name = new JLabel("Name");
         tfName = new JTextField();
         quantity = new JLabel("Quantity");

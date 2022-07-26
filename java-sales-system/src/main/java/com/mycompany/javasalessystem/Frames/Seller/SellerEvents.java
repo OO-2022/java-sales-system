@@ -45,9 +45,10 @@ public class SellerEvents implements MouseListener {
                 String email = frame.getTfEmail().getText();
                 String password = frame.getTfPassword().getText();
                 String occupation = frame.getTfOccupation().getText();
+                String cpf = frame.getTfCpf().getText();
                 
             try {
-                model.addElement(SellerRepository.create(name, email, password, occupation));
+                model.addElement(SellerRepository.create(name, email, password, occupation, cpf));
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }
@@ -63,12 +64,13 @@ public class SellerEvents implements MouseListener {
                     Seller seller = model.getElementAt(selectedIndex);
                     seller.setId(frame.getTfId().getText());
                     seller.setName(frame.getTfName().getText());
+                    seller.setCpf(frame.getTfCpf().getText());
                     seller.setEmail(frame.getTfEmail().getText());
                     seller.setPassword(frame.getTfPassword().getText());
                     seller.setOccupation(frame.getTfOccupation().getText());
                     
                     try {
-                        SellerRepository.update(seller.getId(), seller.getName(), seller.getEmail(), seller.getPassword(), seller.getOccupation());
+                        SellerRepository.update(seller.getId(), seller.getName(), seller.getEmail(), seller.getPassword(), seller.getOccupation(), seller.getCpf());
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, ex);
                     }
@@ -79,6 +81,7 @@ public class SellerEvents implements MouseListener {
             case "Limpar" -> {
                 frame.getTfId().setText("");
                 frame.getTfName().setText("");
+                frame.getTfCpf().setText("");
                 frame.getTfEmail().setText("");
                 frame.getTfPassword().setText("");
                 frame.getTfOccupation().setText("");
