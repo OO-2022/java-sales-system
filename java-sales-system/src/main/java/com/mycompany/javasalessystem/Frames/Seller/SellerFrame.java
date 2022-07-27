@@ -154,7 +154,7 @@ public class SellerFrame extends JFrame{
     
     private void configuraJanela() {
         setSize(700, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Controle de Vendedores");
         setResizable(false);
         setLocationRelativeTo(null);
