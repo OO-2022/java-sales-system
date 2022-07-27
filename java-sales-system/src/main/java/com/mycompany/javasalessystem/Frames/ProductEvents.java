@@ -74,7 +74,6 @@ public class ProductEvents implements MouseListener {
                 }
             }
             case "Limpar" -> {
-                frame.getTfId().setText("");
                 frame.getTfName().setText("");
                 frame.getTfQuantity().setText("");
                 frame.getTfPrice().setText("");
