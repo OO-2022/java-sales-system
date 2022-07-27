@@ -79,7 +79,6 @@ public class SellerEvents implements MouseListener {
                 }
             }
             case "Limpar" -> {
-                frame.getTfId().setText("");
                 frame.getTfName().setText("");
                 frame.getTfCpf().setText("");
                 frame.getTfEmail().setText("");

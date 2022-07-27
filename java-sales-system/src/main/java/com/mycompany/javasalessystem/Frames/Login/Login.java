@@ -168,7 +168,7 @@ public class Login extends javax.swing.JFrame {
             return;
 	}
         
-        JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
+        //JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
         
         if (Session.getAdmin() != null) {
             AdminFrame telaAdmin = new AdminFrame();
