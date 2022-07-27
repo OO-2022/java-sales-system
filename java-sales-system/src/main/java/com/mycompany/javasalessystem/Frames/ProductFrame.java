@@ -123,8 +123,8 @@ public class ProductFrame extends JFrame{
     }
     
     private void configuraJanela() {
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(700, 500);
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Administração de estoque");
         setResizable(false);
         setLocationRelativeTo(null);
@@ -144,22 +144,23 @@ public class ProductFrame extends JFrame{
         rightPanel = new JPanel();
         rightPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Produto"));
         rightPanel.setLayout(new FlowLayout(0, 0, 0));
-        rightPanel.setPreferredSize(new Dimension(350, 400));
+        rightPanel.setPreferredSize(new Dimension(400, 400));
         rightPanel.setBackground(new Color(246, 251, 244));
                 
         JPanel leftGap = new JPanel();
-        leftGap.setPreferredSize(new Dimension(10, 330));
+        leftGap.setPreferredSize(new Dimension(30, 330));
         leftGap.setBackground(new Color(246, 251, 244));
         
         //painel central com as informações
         JPanel midGap = new JPanel();
-        midGap.setPreferredSize(new Dimension(320, 330));
+        //midGap.setPreferredSize(new Dimension(320, 330));
+        midGap.setPreferredSize(new Dimension(330, 400));
         midGap.setBackground(new Color(246, 251, 244));
         midGap.setLayout(new GridLayout(3,1,5,20));
         configMidGap(midGap);
         
         JPanel rightGap = new JPanel();
-        rightGap.setPreferredSize(new Dimension(10, 330));
+        rightGap.setPreferredSize(new Dimension(30, 330));
         rightGap.setBackground(new Color(246, 251, 244));
         rightGap.setVisible(true);
         
@@ -245,7 +246,7 @@ public class ProductFrame extends JFrame{
         JPanel leftPanel = new JPanel();
         leftPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Estoque"));
         leftPanel.setLayout(new BorderLayout());
-        leftPanel.setPreferredSize(new Dimension(230, 330));
+        leftPanel.setPreferredSize(new Dimension(280, 330));
         leftPanel.setBackground(new Color(246, 251, 244));
 
         list.setVisible(true);
