@@ -10,7 +10,7 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 package com.mycompany.javasalessystem.Frames.Login;
 
-import com.mycompany.javasalessystem.Frames.AdminFrame;
+import com.mycompany.javasalessystem.Frames.Admin.AdminFrame;
 import com.mycompany.javasalessystem.Models.User;
 import com.mycompany.javasalessystem.Repositories.UserRepository;
 import com.mycompany.javasalessystem.Utils.Session;

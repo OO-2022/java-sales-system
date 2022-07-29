@@ -8,10 +8,10 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 */
 
-package com.mycompany.javasalessystem.Frames;
+package com.mycompany.javasalessystem.Frames.Sale;
 
-import com.mycompany.javasalessystem.Models.Product;
-import com.mycompany.javasalessystem.Repositories.ProductRepository;
+import com.mycompany.javasalessystem.Models.Seller;
+import com.mycompany.javasalessystem.Repositories.SellerRepository;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
@@ -20,25 +20,25 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
-public class ProductWindowEvents implements WindowListener {
+public class SaleWindowEvents implements WindowListener {
 
-    private final ProductFrame frame;
-    private final ProductRepository productRepository;
+    private final SaleFrame frame;
+    private final SellerRepository sellerRepository;
 
-    public ProductWindowEvents(ProductFrame frame) {
+    public SaleWindowEvents(SaleFrame frame) {
         this.frame = frame;
-        productRepository = new ProductRepository();
+        sellerRepository = new SellerRepository();
     }
     
     @Override
     public void windowOpened(WindowEvent e) {
         
-        productRepository.load();
-        List<Product> products  = ProductRepository.getProducts();
+        sellerRepository.load();
+        List<Seller> sellers  = SellerRepository.getSellers(); 
 
-        DefaultListModel<Product> model = new DefaultListModel<>();
-        for (Product product : products) {
-            model.addElement(product);
+        DefaultListModel<Seller> model = new DefaultListModel<>();
+        for (Seller seller : sellers) {
+            model.addElement(seller);
         }
         frame.getList().setModel(model);
         

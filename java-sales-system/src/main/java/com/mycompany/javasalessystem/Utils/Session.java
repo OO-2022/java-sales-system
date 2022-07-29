@@ -33,4 +33,16 @@ public class Session {
 	public static void setSeller(Seller seller) {
             Session.seller = seller;
 	}
+        
+        public static String titleAccordingToSession() {
+            
+            if ( Session.getAdmin() != null){
+                return "Olá, "+Session.getAdmin().getName()+"! Você é um administrador.";
+            } else if ( Session.getSeller() != null){
+                return "Olá, "+Session.getSeller().getName()+"! Você é um vendedor.";
+            } else {
+                return "";
+            }
+        
+	}
 }

@@ -8,7 +8,7 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 */
 
-package com.mycompany.javasalessystem.Frames;
+package com.mycompany.javasalessystem.Frames.Admin;
 
 
 import com.mycompany.javasalessystem.Utils.Session;
@@ -27,6 +27,7 @@ public class AdminFrame extends JFrame{
     private JPanel leftPanel;
     
     private JButton btnSeller;
+    private JButton btnAdmin;
     private JButton btnClient;
     
     private JButton btnProduct;
@@ -75,6 +76,15 @@ public class AdminFrame extends JFrame{
     public void setBtnProduct(JButton btnProduct) {
         this.btnProduct = btnProduct;
     }
+    
+    public JButton getBtnAdmin() {
+        return btnAdmin;
+    }
+    
+    public void setBtnAdmin(JButton btnAdmin) {
+        this.btnAdmin = btnAdmin;
+    }
+    
     public JLabel getBrand() {
         return brand;
     }
@@ -92,7 +102,8 @@ public class AdminFrame extends JFrame{
         //Configuração da janela
         setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
-        setTitle("Olá, "+Session.getAdmin().getName()+"! Você é um administrador.");
+        
+        setTitle(Session.titleAccordingToSession());
         setLocationRelativeTo(null);
         
     }
@@ -103,42 +114,53 @@ public class AdminFrame extends JFrame{
         rightPanel.setBackground(new Color(246, 251, 244));
         rightPanel.setPreferredSize(new Dimension(250, 400));
         rightPanel.setLayout(new BorderLayout());
-
         
         //Instanciando e configurando os botões
-        btnSeller = new javax.swing.JButton("Cadastrar funcionário");
+        
+        btnSeller = new javax.swing.JButton("Cadastrar vendedor");
         btnSeller.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSeller.setBackground(Color.WHITE);
         btnSeller.setForeground(Color.black);
         btnSeller.addMouseListener(new AdminEvents(btnSeller));
+        btnSeller.setMaximumSize( new Dimension(20,20) );
+        
+        btnAdmin = new javax.swing.JButton("Cadastrar administrador");
+        btnAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdmin.setBackground(Color.WHITE);
+        btnAdmin.setForeground(Color.black);
+        btnAdmin.addMouseListener(new AdminEvents(btnAdmin));
+        btnAdmin.setMaximumSize( new Dimension(20,20) );
         
         btnClient = new javax.swing.JButton("Cadastrar cliente");
         btnClient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClient.setBackground(Color.WHITE);
         btnClient.setForeground(Color.black);
         btnClient.addMouseListener(new AdminEvents(btnClient));
+        btnSeller.setMaximumSize( new Dimension(20,20) );
         
         btnProduct = new javax.swing.JButton("Gerenciar estoque");
         btnProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProduct.setBackground(Color.WHITE);
         btnProduct.setForeground(Color.black);
         btnProduct.addMouseListener(new AdminEvents(btnProduct));
-        
+        btnSeller.setMaximumSize( new Dimension(20,20) );
+
         btnSale = new javax.swing.JButton("Sessão de vendas");
         btnSale.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSale.setBackground(Color.WHITE);
         btnSale.setForeground(Color.black);
         btnSale.addMouseListener(new AdminEvents(btnSale));
+        btnSeller.setMaximumSize( new Dimension(20,20) );
         
         brand = new javax.swing.JLabel();
         
         //Layout
         JPanel topGap = new JPanel();
-        topGap.setPreferredSize(new Dimension(250, 50));
+        topGap.setPreferredSize(new Dimension(250, 25));
         topGap.setBackground(new Color(246, 251, 244));
         
         JPanel bottomGap = new JPanel();
-        bottomGap.setPreferredSize(new Dimension(250, 50));
+        bottomGap.setPreferredSize(new Dimension(250, 25));
         bottomGap.setBackground(new Color(246, 251, 244));
         
         JPanel leftGap = new JPanel();
@@ -150,11 +172,12 @@ public class AdminFrame extends JFrame{
         rightGap.setBackground(new Color(246, 251, 244));
         
         JPanel centerPanel = new JPanel();
-        centerPanel.setPreferredSize(new Dimension(250, 300));
+        centerPanel.setPreferredSize(new Dimension(250, 350));
         centerPanel.setBackground(new Color(246, 251, 244));
-        centerPanel.setLayout(new GridLayout(4,1,0,15));
+        centerPanel.setLayout(new GridLayout(5,1,0,15));
         
         centerPanel.add(btnSeller);
+        centerPanel.add(btnAdmin);
         centerPanel.add(btnClient);
         centerPanel.add(btnProduct);
         centerPanel.add(btnSale);

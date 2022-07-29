@@ -11,6 +11,7 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 package com.mycompany.javasalessystem.Frames.Seller;
 
 import com.mycompany.javasalessystem.Models.Seller;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -33,8 +34,8 @@ public class SellerListEvent implements ListSelectionListener {
             tela.getTfCpf().setText(elementAt.getCpf());
             tela.getTfEmail().setText(elementAt.getEmail());
             tela.getTfPassword().setText(elementAt.getPassword());
-            tela.getTfOccupation().setText(elementAt.getOccupation());
-        }
+            tela.getCbOccupation().setSelectedItem(elementAt.getOccupation());
+        }            
     }
 
 }

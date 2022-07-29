@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mycompany.javasalessystem.Database.Database;
 import com.mycompany.javasalessystem.Models.Client;
+import com.mycompany.javasalessystem.Models.Product;
 import com.mycompany.javasalessystem.Utils.Verifications;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -30,6 +31,20 @@ public class ClientRepository implements Repository {
     
     public static ArrayList<Client> getClients() {
         return clients;
+    }
+    
+     public static String[] getListOfClients() {
+        int size = clients.size();
+        String[] listOfProducts = new String[size];
+        int cont = 0;
+       
+        for(Client client: clients){
+            listOfProducts[cont] = client.getId() + " - " + client.getName();
+            System.out.println(client.getId() + " - " + client.getName());
+            cont++;
+        }
+        
+        return listOfProducts;
     }
 
     public static Client findById(String id) {

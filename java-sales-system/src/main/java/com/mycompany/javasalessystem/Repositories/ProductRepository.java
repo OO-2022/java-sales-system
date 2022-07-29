@@ -32,6 +32,20 @@ public class ProductRepository implements Repository {
         return products;
     }
     
+     public static String[] getListOfProducts() {
+        int size = products.size();
+        String[] listOfProducts = new String[size];
+        int cont = 0;
+       
+        for(Product product: products){
+            listOfProducts[cont] = product.getId() + " - " + product.getName();
+            System.out.println(product.getId() + " - " + product.getName());
+            cont++;
+        }
+        
+        return listOfProducts;
+    }
+    
     public static Product findById(String id){
         for(Product product: products){
             if(product.getId().compareTo(id) == 0){
@@ -79,20 +93,6 @@ public class ProductRepository implements Repository {
                 System.out.println("");
             }
         }
-    }
-
-    public static void find(String id) throws Exception{
-        Product product = findById(id);
-
-        if(product == null){
-            throw new Exception("Produto nao encontrado no sistema");
-        }
-
-        System.out.println("Produto de ID: "+product.getId());
-        System.out.println("Nome: "+product.getName());
-        System.out.println("Quantidade em estoque: "+product.getQuantity());
-        System.out.println("Preco por unidade: "+product.getPrice());
-        System.out.println("");
     }
 
     public static Product update(String id, String name, double price, int quantity) throws Exception{

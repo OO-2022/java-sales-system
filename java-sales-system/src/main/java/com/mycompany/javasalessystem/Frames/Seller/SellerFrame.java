@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
+import javax.swing.JComboBox;
 
 public class SellerFrame extends JFrame{
     
@@ -45,7 +46,7 @@ public class SellerFrame extends JFrame{
     JLabel password;
     JPasswordField tfPassword;
     JLabel occupation;
-    JTextField tfOccupation;
+    JComboBox cbOccupation;
     JLabel cpf;
     JTextField tfCpf;
     Border lineBorder;
@@ -129,11 +130,11 @@ public class SellerFrame extends JFrame{
     public void setOccupation(JLabel occupation) {
         this.occupation = occupation;
     }
-    public JTextField getTfOccupation() {
-        return tfOccupation;
+    public JComboBox getCbOccupation() {
+        return cbOccupation;
     }
-    public void setTfOccupation(JTextField tfOccupation) {
-        this.tfOccupation = tfOccupation;
+    public void setCbOccupation(JComboBox cbOccupation) {
+        this.cbOccupation = cbOccupation;
     }
     public JLabel getCpf() {
         return cpf;
@@ -223,10 +224,12 @@ public class SellerFrame extends JFrame{
         tfEmail = new JTextField();
         password = new JLabel("Password");
         tfPassword = new JPasswordField();
+        
+        String listOfOccupations[] = {"Vendedor", "Gerente de Vendas", "Supervisor de Vendas"};
+        
         occupation = new JLabel("Occupation");
-        tfOccupation = new JTextField();
-        
-        
+        cbOccupation = new JComboBox(listOfOccupations);
+                
         //adicionando cada componente em ordem pré-determinada
         topPanel.add(id);
         topPanel.add(tfId);
@@ -239,7 +242,7 @@ public class SellerFrame extends JFrame{
         topPanel.add(password);
         topPanel.add(tfPassword);
         topPanel.add(occupation);
-        topPanel.add(tfOccupation);
+        topPanel.add(cbOccupation);
         
         //centerPanel
         JPanel centerPanel = new JPanel();
