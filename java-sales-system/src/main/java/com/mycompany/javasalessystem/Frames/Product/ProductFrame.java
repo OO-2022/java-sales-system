@@ -8,7 +8,7 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 */
 
-package com.mycompany.javasalessystem.Frames;
+package com.mycompany.javasalessystem.Frames.Product;
 
 import com.mycompany.javasalessystem.Models.Product;
 import java.awt.BorderLayout;
