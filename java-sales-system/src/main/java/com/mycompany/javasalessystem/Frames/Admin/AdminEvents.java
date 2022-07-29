@@ -13,6 +13,7 @@ package com.mycompany.javasalessystem.Frames.Admin;
 import com.mycompany.javasalessystem.Frames.Product.ProductFrame;
 import com.mycompany.javasalessystem.Frames.Client.ClientFrame;
 import com.mycompany.javasalessystem.Frames.Seller.SellerFrame;
+import com.mycompany.javasalessystem.Frames.Sale.SaleFrame;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -41,7 +42,8 @@ public class AdminEvents implements MouseListener{
         } else if (button.getText().equals("Cadastrar administrador")){
             
         }  else if (button.getText().equals("Sessão de vendas")){
-            
+            SaleFrame telaSale = new SaleFrame();
+            telaSale.montaTela();
         }
     }
 

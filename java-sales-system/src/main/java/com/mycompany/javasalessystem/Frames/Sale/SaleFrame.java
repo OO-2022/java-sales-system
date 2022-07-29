@@ -11,14 +11,15 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 package com.mycompany.javasalessystem.Frames.Sale;
 
 import com.mycompany.javasalessystem.Models.Product;
+import com.mycompany.javasalessystem.Models.Client;
 import com.mycompany.javasalessystem.Utils.Session;
-
 import com.mycompany.javasalessystem.Repositories.ProductRepository;
 import com.mycompany.javasalessystem.Repositories.ClientRepository;
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SaleFrame extends JFrame{
     private JPanel principal;
@@ -27,20 +28,34 @@ public class SaleFrame extends JFrame{
     
     private JList listaCompras;
     
-    JComboBox cbClientes;
+    JComboBox cbClientes = new JComboBox(); 
+    DefaultListModel<Client> modelClient = new DefaultListModel<>();
+    DefaultListModel<Product> modelProduct = new DefaultListModel<>();
+
     JLabel clientes;
-    JComboBox cbProdutos;
+    JButton insertCliente;
+
+    JComboBox cbProdutos = new JComboBox();
+
     JLabel produtos;
+    JButton insertProduto;
     
+    JLabel totalProdutos;
+    JTextField tfTotalProdutos;
     
-    private JButton btnSeller;
-    private JButton btnClient;
     Border lineBorder;   
     
     public SaleFrame() {
         lineBorder = BorderFactory.createLineBorder(new Color(75, 134, 115));
     }
     
+    public JComboBox getCbProdutos(){
+        return cbProdutos;
+    }
+    
+    public JComboBox getCbClientes(){
+        return cbClientes;
+    }
     //GETTERS E SETTERS
     public JPanel getPrincipal() {
         return principal;
@@ -88,16 +103,18 @@ public class SaleFrame extends JFrame{
     }  
     
     private void configuraJanela() {
-        this.setSize(600, 400);
+        this.setSize(700, 500);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         principal = new JPanel();
         principal.setLayout(new BorderLayout());
         //Configuração da janela
-        setPreferredSize(new java.awt.Dimension(600, 400));
+        setPreferredSize(new java.awt.Dimension(700, 500));
         setResizable(false);      
 
         setTitle(Session.titleAccordingToSession());
+        
+        this.addWindowListener(new SaleWindowEvents(this));
         
         setLocationRelativeTo(null);        
     }
@@ -106,7 +123,7 @@ public class SaleFrame extends JFrame{
         rightPanel = new JPanel();
         rightPanel.setVisible(true);
         rightPanel.setBackground(new Color(246, 251, 244));
-        rightPanel.setPreferredSize(new Dimension(300, 400));
+        rightPanel.setPreferredSize(new Dimension(350, 500));
         
         rightPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Dados da Compra"));
 
@@ -182,36 +199,62 @@ public class SaleFrame extends JFrame{
         leftPanel = new JPanel();
         leftPanel.setVisible(true);
         leftPanel.setBackground(new Color(246, 251, 244));
-        leftPanel.setPreferredSize(new Dimension(350, 400));
-        leftPanel.setLayout(new GridLayout(4, 3, 3, 0));
-        principal.add(leftPanel, BorderLayout.WEST);
+        leftPanel.setPreferredSize(new Dimension(350, 500));               
         
+        leftPanel.setLayout(new BorderLayout());
+
         JPanel leftGap = new JPanel();
-        leftGap.setPreferredSize(new Dimension(30, 330));
+        leftGap.setPreferredSize(new Dimension(30, 400));
         leftGap.setBackground(new Color(246, 251, 244));
         
         JPanel rightGap = new JPanel();
-        rightGap.setPreferredSize(new Dimension(30, 330));
+        rightGap.setPreferredSize(new Dimension(30, 400));
         rightGap.setBackground(new Color(246, 251, 244));
-        //rightGap.setBackground(Color.GRAY);
-        rightGap.setVisible(true);
         
-        String[] listOfProducts = ProductRepository.getListOfProducts();
+        JPanel topGap = new JPanel();
+        topGap.setPreferredSize(new Dimension(340, 50));
+        topGap.setBackground(new Color(246, 251, 244));
+        
+        JPanel bottomGap = new JPanel();
+        bottomGap.setPreferredSize(new Dimension(340, 50));
+        bottomGap.setBackground(new Color(246, 251, 244));
+        
+        JPanel centerContent = new JPanel();
+        centerContent.setPreferredSize(new Dimension(340, 400));
+        centerContent.setBackground(new Color(246, 251, 244));
+        centerContent.setLayout(new GridLayout(8,1,0,15));
+
+        leftPanel.add(rightGap, BorderLayout.WEST);
+        leftPanel.add(leftGap, BorderLayout.EAST);
+        leftPanel.add(topGap, BorderLayout.NORTH);
+        leftPanel.add(bottomGap, BorderLayout.SOUTH);
+        leftPanel.add(centerContent, BorderLayout.CENTER);
+        
         produtos = new JLabel("Lista de Produtos");
-        cbProdutos = new JComboBox(listOfProducts);
+                               
+        totalProdutos = new JLabel("Total de Produtos");
+        tfTotalProdutos = new JTextField();
         
-        String[] listOfClientes = ClientRepository.getListOfClients();
-        clientes = new JLabel("Lista de Clientes");
-        cbClientes = new JComboBox(listOfClientes);
+        insertProduto = new JButton("Adiciona Produto");
+        insertProduto.addMouseListener(new SaleEvents(this, insertProduto));
         
-        leftPanel.add(leftGap);
-        leftPanel.add(produtos);
-        leftPanel.add(cbProdutos);         
-        leftPanel.add(clientes);
-        leftPanel.add(cbClientes);
-        leftPanel.add(rightGap);
         
-        leftPanel.repaint();
+        clientes = new JLabel("Lista de Clientes");  
+        
+        insertCliente = new JButton("Adiciona Cliente");
+        insertCliente.addMouseListener(new SaleEvents(this, insertCliente));
+        
+        centerContent.add(produtos);
+        centerContent.add(cbProdutos);           
+        centerContent.add(totalProdutos);
+        centerContent.add(tfTotalProdutos); 
+        centerContent.add(insertProduto);        
+        centerContent.add(clientes);
+        centerContent.add(cbClientes);
+        centerContent.add(insertCliente);
+        
+        
+        principal.add(leftPanel, BorderLayout.WEST);
     }
     
     public void mostraTela() {

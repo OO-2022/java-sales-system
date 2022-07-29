@@ -10,38 +10,50 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 package com.mycompany.javasalessystem.Frames.Sale;
 
-import com.mycompany.javasalessystem.Models.Seller;
-import com.mycompany.javasalessystem.Repositories.SellerRepository;
+import com.mycompany.javasalessystem.Repositories.ProductRepository;
+import com.mycompany.javasalessystem.Models.Product;
+
+import com.mycompany.javasalessystem.Repositories.ClientRepository;
+import com.mycompany.javasalessystem.Models.Client;
+
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
+
+import  com.mycompany.javasalessystem.Frames.Sale.SaleFrame;
 
 public class SaleWindowEvents implements WindowListener {
 
     private final SaleFrame frame;
-    private final SellerRepository sellerRepository;
+    private final ProductRepository productRepository;
+    private final ClientRepository clientRepository;
+    
 
     public SaleWindowEvents(SaleFrame frame) {
         this.frame = frame;
-        sellerRepository = new SellerRepository();
+        productRepository = new ProductRepository();
+        clientRepository = new ClientRepository();
     }
     
     @Override
     public void windowOpened(WindowEvent e) {
         
-        sellerRepository.load();
-        List<Seller> sellers  = SellerRepository.getSellers(); 
-
-        DefaultListModel<Seller> model = new DefaultListModel<>();
-        for (Seller seller : sellers) {
-            model.addElement(seller);
-        }
-        frame.getList().setModel(model);
+        productRepository.load();  
+        clientRepository.load();       
         
+        ArrayList<Product> listOfProducts = ProductRepository.getProducts();
+
+        for (Product product : listOfProducts) {
+            frame.getCbProdutos().addItem(product);        
+        }
+        
+        ArrayList<Client> listOfClients = ClientRepository.getClients();
+
+        for (Client client : listOfClients) {
+            frame.getCbClientes().addItem(client);        
+        }
+                
         frame.repaint();  
     }
 
