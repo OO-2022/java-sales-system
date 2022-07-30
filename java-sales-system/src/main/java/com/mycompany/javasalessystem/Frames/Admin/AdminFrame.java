@@ -16,10 +16,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 
 public class AdminFrame extends JFrame{
     private JPanel principal;
@@ -100,6 +102,7 @@ public class AdminFrame extends JFrame{
         principal = new JPanel();
         principal.setLayout(new BorderLayout());
         //Configuração da janela
+        setLayout(new BorderLayout());
         setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
         
@@ -199,12 +202,29 @@ public class AdminFrame extends JFrame{
         leftPanel.setPreferredSize(new Dimension(350, 400));
         leftPanel.setLayout(new BorderLayout());
         
+        JPanel leftGap = new JPanel();
+        leftGap.setPreferredSize(new Dimension(60, 400));
+        leftGap.setBackground(new Color(75, 134, 115));
         
-        principal.add(leftPanel, BorderLayout.WEST);
+        JPanel rightGap = new JPanel();
+        rightGap.setPreferredSize(new Dimension(50, 400));
+        rightGap.setBackground(new Color(75, 134, 115));
+        
+        JLabel label = new JLabel();
+        label.setHorizontalTextPosition(JLabel.CENTER);
+        
+        ImageIcon imageIcon = new ImageIcon("src/main/java/com/mycompany/javasalessystem/Frames/Admin/logoOO.gif");
+        label.setIcon(imageIcon);
+        leftPanel.add(label, BorderLayout.CENTER);
+
+        leftPanel.add(leftGap, BorderLayout.WEST);
+        leftPanel.add(rightGap, BorderLayout.EAST);
+
+        this.add(leftPanel, BorderLayout.WEST);
     }
     
     public void mostraTela() {
-        this.add(principal);
+        this.add(principal, BorderLayout.EAST);
         this.setVisible(true);
     }
 

@@ -43,7 +43,7 @@ public class ClientFrame extends JFrame{
     JLabel email;
     JTextField tfEmail;
     JLabel phone;
-    JPasswordField tfPhone;
+    JTextField tfPhone;
     JLabel cep;
     JTextField tfCep;
     JLabel cpf;
@@ -222,7 +222,7 @@ public class ClientFrame extends JFrame{
         email = new JLabel("Email");
         tfEmail = new JTextField();
         phone = new JLabel("Telefone");
-        tfPhone = new JPasswordField();
+        tfPhone = new JTextField();
         cep = new JLabel("Cep");
         tfCep = new JTextField();
         
@@ -291,7 +291,7 @@ public class ClientFrame extends JFrame{
     
     private void configLeftPanel() {
         JPanel leftPanel = new JPanel();
-        leftPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Vendedores"));
+        leftPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Lista de clientes"));
         leftPanel.setLayout(new BorderLayout());
         leftPanel.setPreferredSize(new Dimension(280, 330));
         leftPanel.setBackground(new Color(246, 251, 244));

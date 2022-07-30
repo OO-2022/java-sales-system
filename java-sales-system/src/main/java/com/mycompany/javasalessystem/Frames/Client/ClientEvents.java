@@ -40,18 +40,17 @@ public class ClientEvents implements MouseListener {
             case "Adicionar" -> {
                 DefaultListModel<Client> model = (DefaultListModel<Client>) frame.getList().getModel();
                     
-                String id = frame.getTfId().getText();
                 String name = frame.getTfName().getText();
                 String email = frame.getTfEmail().getText();
                 String phone = frame.getTfPhone().getText();
                 String cep = frame.getTfCep().getText();
                 String cpf = frame.getTfCpf().getText();
                 
-            try {
-                model.addElement(ClientRepository.create(name, cpf, email, phone, cep));
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
+                try {
+                    model.addElement(ClientRepository.create(name, cpf, email, phone, cep));
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
 
                 frame.getList().setModel(model);
                 frame.repaint();
@@ -60,25 +59,19 @@ public class ClientEvents implements MouseListener {
                 int selectedIndex = frame.getList().getSelectedIndex();
                 if (selectedIndex != -1) {
                     DefaultListModel<Client> model = (DefaultListModel<Client>) frame.getList().getModel();
-                    
                     Client client = model.getElementAt(selectedIndex);
-                    client.setId(frame.getTfId().getText());
-                    client.setName(frame.getTfName().getText());
-                    client.setCpf(frame.getTfCpf().getText());
-                    client.setEmail(frame.getTfEmail().getText());
-                    client.setPhone(frame.getTfPhone().getText());
-                    client.setCep(frame.getTfCep().getText());
                     
                     try {
-                        ClientRepository.update(client.getId(), client.getName(), client.getCpf(), client.getEmail(), client.getPhone(), client.getCep());
+                        ClientRepository.update(client.getId(), frame.getTfName().getText(), frame.getTfCpf().getText(), frame.getTfEmail().getText(), frame.getTfPhone().getText(), frame.getTfCep().getText());
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, ex);
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
                     
                     frame.repaint();
                 }
             }
             case "Limpar" -> {
+                frame.getTfId().setText("");
                 frame.getTfName().setText("");
                 frame.getTfCpf().setText("");
                 frame.getTfEmail().setText("");
@@ -96,7 +89,7 @@ public class ClientEvents implements MouseListener {
                     try {
                         ClientRepository.delete(client.getId());
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, ex);
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
                                 
                     frame.repaint();
