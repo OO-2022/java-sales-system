@@ -135,6 +135,10 @@ public class ClientRepository implements Repository {
             throw new Exception("Email invalido");
         }
         
+        if(Verifications.verifyCPF(cpf)){
+            throw new Exception ("Email invalido");
+        }
+        
         Client client = findById(id);
 
         if (client == null) {

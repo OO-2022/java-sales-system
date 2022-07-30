@@ -15,8 +15,6 @@ import com.mycompany.javasalessystem.Repositories.ProductRepository;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -25,12 +23,10 @@ public class ProductEvents implements MouseListener {
     
     private final ProductFrame frame;
     private final JButton button;
-    private final ProductRepository productRepository;
     
     public ProductEvents(ProductFrame frame, JButton button) {
         this.frame = frame;
         this.button = button;
-        this.productRepository = new ProductRepository();
     }
 
     @Override
@@ -39,16 +35,16 @@ public class ProductEvents implements MouseListener {
             case "Adicionar" -> {
                 DefaultListModel<Product> model = (DefaultListModel<Product>) frame.getList().getModel();
                     
-                String id = frame.getTfId().getText();
-                String name = frame.getTfName().getText();
-                int quantity = Integer.parseInt(frame.getTfQuantity().getText());
-                double price = Double.parseDouble(frame.getTfPrice().getText());
-                
-            try {
-                model.addElement(ProductRepository.create(name, price, quantity));
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
+                try {
+                    String name = frame.getTfName().getText();
+                    int quantity = Integer.parseInt(frame.getTfQuantity().getText());
+                    double price = Double.parseDouble(frame.getTfPrice().getText());
+                    model.addElement(ProductRepository.create(name, price, quantity));
+                } catch (NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos");
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
 
                 frame.getList().setModel(model);
                 frame.repaint();
@@ -59,16 +55,17 @@ public class ProductEvents implements MouseListener {
                     DefaultListModel<Product> model = (DefaultListModel<Product>) frame.getList().getModel();
                     
                     Product product = model.getElementAt(selectedIndex);
-                    product.setId(frame.getTfId().getText());
-                    product.setName(frame.getTfName().getText());
-                    product.setQuantity(Integer.parseInt(frame.getTfQuantity().getText()));
-                    product.setPrice(Double.parseDouble(frame.getTfPrice().getText()));
-                    
+
                     try {
-                        ProductRepository.update(product.getId(), product.getName(), product.getPrice(), product.getQuantity());
+                        int quantity = Integer.parseInt(frame.getTfQuantity().getText());
+                        double price = Double.parseDouble(frame.getTfPrice().getText());
+                        ProductRepository.update(product.getId(), frame.getTfName().getText(), price, quantity);
+                    } catch (NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos");
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, ex);
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
+                    
                     
                     frame.repaint();
                 }
@@ -89,7 +86,7 @@ public class ProductEvents implements MouseListener {
                     try {
                         ProductRepository.delete(product.getId());
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, ex);
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
                                 
                     frame.repaint();
