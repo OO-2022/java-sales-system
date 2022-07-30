@@ -10,12 +10,18 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 package com.mycompany.javasalessystem.Frames.Sale;
 
-import com.mycompany.javasalessystem.Models.Seller;
-import com.mycompany.javasalessystem.Repositories.SellerRepository;
+import com.mycompany.javasalessystem.Models.Sale;
+import com.mycompany.javasalessystem.Models.Product;
+import com.mycompany.javasalessystem.Models.Client;
+
+
+import com.mycompany.javasalessystem.Repositories.SaleRepository;
 import com.mycompany.javasalessystem.Utils.Encrypt;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -26,84 +32,62 @@ public class SaleEvents implements MouseListener {
     
     private final SaleFrame frame;
     private final JButton button;
-    private final SellerRepository sellerRepository;
+    private final SaleRepository saleRepository;
     
     public SaleEvents(SaleFrame frame, JButton button) {
         this.frame = frame;
         this.button = button;
-        this.sellerRepository = new SellerRepository();
+        this.saleRepository = new SaleRepository();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         switch (button.getText()) {
-            case "Adicionar" -> {
-                DefaultListModel<Seller> model = (DefaultListModel<Seller>) frame.getList().getModel();
-                    
-                String id = frame.getTfId().getText();
-                String name = frame.getTfName().getText();
-                String email = frame.getTfEmail().getText();
-                String password = frame.getTfPassword().getText();
-                String occupation = frame.getTfOccupation().getText();
-                String cpf = frame.getTfCpf().getText();
+            case "Definir Cliente" -> {
                 
-            try {
-                model.addElement(SellerRepository.create(name, email, password, occupation, cpf));
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
+                Client cliente = (Client) frame.cbClientes.getSelectedItem();
+                
+                try {
+                    Sale sale = saleRepository.create(cliente.getCpf());
+                    frame.setSale(sale);
+                    frame.configSale();
+                    frame.setClienteText( cliente.getName() + " - " + cliente.getCpf() );
 
-                frame.getList().setModel(model);
+                } catch (Exception ex){
+                    JOptionPane.showMessageDialog(null, ex);
+                }
+         
                 frame.repaint();
             }
-            case "Editar" -> {
-                int selectedIndex = frame.getList().getSelectedIndex();
-                if (selectedIndex != -1) {
-                    DefaultListModel<Seller> model = (DefaultListModel<Seller>) frame.getList().getModel();
-                    
-                    Seller seller = model.getElementAt(selectedIndex);
-                    seller.setId(frame.getTfId().getText());
-                    seller.setName(frame.getTfName().getText());
-                    seller.setCpf(frame.getTfCpf().getText());
-                    seller.setEmail(frame.getTfEmail().getText());
-                    seller.setPassword(frame.getTfPassword().getText());
-                    seller.setOccupation(frame.getTfOccupation().getText());
-                    
-                    try {
-                        SellerRepository.update(seller.getId(), seller.getName(), seller.getEmail(), seller.getPassword(), seller.getOccupation(), seller.getCpf());
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, ex);
-                    }
-                    
-                    frame.repaint();
-                }
-            }
-            case "Limpar" -> {
-                frame.getTfName().setText("");
-                frame.getTfCpf().setText("");
-                frame.getTfEmail().setText("");
-                frame.getTfPassword().setText("");
-                frame.getTfOccupation().setText("");
+            case "Adiciona Produto" -> {
+                if (frame.getSale() == null){
+                    JOptionPane.showMessageDialog(null, "Defina primeiro o cliente");
+                    return;
+                } 
                 
+                Product produto = (Product) frame.cbProdutos.getSelectedItem();
+                int quantidade = Integer.parseInt(frame.tfTotalProdutos.getText());     
+                
+                try {
+                    frame.getSale().addProduct(produto.getId(), quantidade);
+                    frame.configSale();
+
+                    frame.salePanel.repaint();             
+                } catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, ex);
+                }
+        
             }
-            case "Remover" ->{
-                int selectedIndex = frame.getList().getSelectedIndex();
-                if (selectedIndex != -1) {
-                    DefaultListModel<Seller> model = (DefaultListModel<Seller>) frame.getList().getModel();
-                    Seller seller = model.get(selectedIndex);
-                    model.removeElementAt(selectedIndex);
-                    frame.getList().setModel(model);
-                    try {
-                        SellerRepository.delete(seller.getId());
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, ex);
-                    }
-                                
-                    frame.repaint();
+            case "Finalizar Compra" -> {
+                if (frame.getSale() == null || frame.getSale().getProducts().size() == 0){
+                    JOptionPane.showMessageDialog(null, "Para finalizar a compra, voce deve inicia-la");
+                    return;
                 }
                 
-                
+                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+            
             }
+        
         }
     }
 
