@@ -11,14 +11,16 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 package com.mycompany.javasalessystem.Frames.Sale;
 
 import com.mycompany.javasalessystem.Models.Product;
+import com.mycompany.javasalessystem.Models.Sale;
+import com.mycompany.javasalessystem.Models.Client;
 import com.mycompany.javasalessystem.Utils.Session;
-
 import com.mycompany.javasalessystem.Repositories.ProductRepository;
 import com.mycompany.javasalessystem.Repositories.ClientRepository;
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SaleFrame extends JFrame{
     private JPanel principal;
@@ -27,20 +29,62 @@ public class SaleFrame extends JFrame{
     
     private JList listaCompras;
     
-    JComboBox cbClientes;
+    JPanel salePanel = new JPanel();
+    JPanel saleProductsPanel = new JPanel();
+    Sale sale = null;
+    
+    JComboBox cbClientes = new JComboBox(); 
+    DefaultListModel<Client> modelClient = new DefaultListModel<>();
+    DefaultListModel<Product> modelProduct = new DefaultListModel<>();
+
     JLabel clientes;
-    JComboBox cbProdutos;
+    JButton insertCliente;
+
+    JComboBox cbProdutos = new JComboBox();
+
     JLabel produtos;
+    JButton insertProduto;
+
     
+    JLabel totalProdutos;
+    JTextField tfTotalProdutos;
     
-    private JButton btnSeller;
-    private JButton btnClient;
-    Border lineBorder;   
+    JLabel clienteText;
+    
+    JButton finalizaCompra;
+    
+    Border lineBorder;
+    
+    JScrollPane scrollFrame = new JScrollPane();
+
+    
+    public String getClienteText(){
+        return this.clienteText.getText();
+    }
+    
+    public void setClienteText(String conteudo){
+        clienteText.setText(conteudo);
+    }
+    
+    public Sale getSale(){
+        return sale;
+    }
+    
+    public void setSale (Sale sale){
+        this.sale = sale;
+    }
     
     public SaleFrame() {
         lineBorder = BorderFactory.createLineBorder(new Color(75, 134, 115));
     }
     
+    public JComboBox getCbProdutos(){
+        return cbProdutos;
+    }
+    
+    public JComboBox getCbClientes(){
+        return cbClientes;
+    }
     //GETTERS E SETTERS
     public JPanel getPrincipal() {
         return principal;
@@ -88,130 +132,147 @@ public class SaleFrame extends JFrame{
     }  
     
     private void configuraJanela() {
-        this.setSize(600, 400);
+        this.setSize(700, 500);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         principal = new JPanel();
         principal.setLayout(new BorderLayout());
         //Configuração da janela
-        setPreferredSize(new java.awt.Dimension(600, 400));
+        setPreferredSize(new java.awt.Dimension(700, 500));
         setResizable(false);      
 
         setTitle(Session.titleAccordingToSession());
         
+        this.addWindowListener(new SaleWindowEvents(this));
+        
         setLocationRelativeTo(null);        
+    }
+    
+    public void configSale(){     
+        saleProductsPanel.removeAll();
+        
+        ArrayList<Product> produtosCompra = sale.getProducts();
+        saleProductsPanel.setLayout(new FlowLayout());
+        saleProductsPanel.setPreferredSize( new Dimension(320, 800));
+        
+        salePanel.setLayout(new BorderLayout());
+        
+        clienteText = new JLabel("");
+        JPanel clientePanel = new JPanel();
+        clientePanel.setBackground(new Color(246, 251, 244));
+        clientePanel.setPreferredSize( new Dimension(350, 20));
+        
+        clientePanel.add(clienteText);
+        
+        salePanel.add(clientePanel, BorderLayout.NORTH);
+        
+        for (Product product: produtosCompra){
+            String nome = product.getName();
+            int quantidade = product.getQuantity();
+            double preco = product.getPrice();
+                        
+            JLabel line = new JLabel( nome + " - " + quantidade + " x " + preco + " = " + (preco*quantidade) );
+            saleProductsPanel.add(line);
+        }
+                
+        salePanel.add(scrollFrame, BorderLayout.CENTER);        
+        scrollFrame.setViewportView(saleProductsPanel);
+        
+        saleProductsPanel.revalidate();
+        saleProductsPanel.repaint();
+        
+        scrollFrame.revalidate();
+        scrollFrame.repaint();
+        
+        salePanel.revalidate();
+        salePanel.repaint();
     }
     
     public void configRightPanel(){        
         rightPanel = new JPanel();
         rightPanel.setVisible(true);
         rightPanel.setBackground(new Color(246, 251, 244));
-        rightPanel.setPreferredSize(new Dimension(300, 400));
+        rightPanel.setPreferredSize(new Dimension(350, 500));
         
         rightPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Dados da Compra"));
 
         rightPanel.setLayout(new BorderLayout());
+        
+        salePanel.setBackground(new Color(246, 251, 244));
+        salePanel.setPreferredSize(new Dimension(350, 500));
+        rightPanel.add(salePanel);
+        
 
         
-        //Instanciando e configurando os botões
-        /*
-        btnSeller.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSeller.setBackground(Color.WHITE);
-        btnSeller.setForeground(Color.black);
-        //btnSeller.addMouseListener(new SaleEvents(btnSeller));
-        
-        btnClient = new javax.swing.JButton("Cadastrar cliente");
-        btnClient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnClient.setBackground(Color.WHITE);
-        btnClient.setForeground(Color.black);
-        //btnClient.addMouseListener(new SaleEvents(btnClient));
-        
-        btnProduct = new javax.swing.JButton("Gerenciar estoque");
-        btnProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnProduct.setBackground(Color.WHITE);
-        btnProduct.setForeground(Color.black);
-        //btnProduct.addMouseListener(new SaleEvents(btnProduct));
-        
-        btnSale = new javax.swing.JButton("Sessão de vendas");
-        btnSale.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSale.setBackground(Color.WHITE);
-        btnSale.setForeground(Color.black);
-        //btnSale.addMouseListener(new SaleEvents(btnSale));
-        
-        brand = new javax.swing.JLabel();
-        
-        //Layout
-        JPanel topGap = new JPanel();
-        topGap.setPreferredSize(new Dimension(250, 50));
-        topGap.setBackground(new Color(246, 251, 244));
-        
-        JPanel bottomGap = new JPanel();
-        bottomGap.setPreferredSize(new Dimension(250, 50));
-        bottomGap.setBackground(new Color(246, 251, 244));
-        
-        JPanel leftGap = new JPanel();
-        leftGap.setPreferredSize(new Dimension(30, 200));
-        leftGap.setBackground(new Color(246, 251, 244));
-        
-        JPanel rightGap = new JPanel();
-        rightGap.setPreferredSize(new Dimension(30, 200));
-        rightGap.setBackground(new Color(246, 251, 244));
-        
-        JPanel centerPanel = new JPanel();
-        centerPanel.setPreferredSize(new Dimension(250, 300));
-        centerPanel.setBackground(new Color(246, 251, 244));
-        centerPanel.setLayout(new GridLayout(4,1,0,15));
-        
-        centerPanel.add(btnSeller);
-        centerPanel.add(btnClient);
-        centerPanel.add(btnProduct);
-        centerPanel.add(btnSale);
-        
-        rightPanel.add(topGap, BorderLayout.NORTH);
-        rightPanel.add(leftGap, BorderLayout.WEST);
-        rightPanel.add(centerPanel, BorderLayout.CENTER);
-        rightPanel.add(rightGap, BorderLayout.EAST);
-        rightPanel.add(bottomGap, BorderLayout.SOUTH);
-        
-        */
         principal.add(rightPanel, BorderLayout.EAST);
         
     }
     
     private void configLeftPanel() {
+
         leftPanel = new JPanel();
+
         leftPanel.setVisible(true);
         leftPanel.setBackground(new Color(246, 251, 244));
-        leftPanel.setPreferredSize(new Dimension(350, 400));
-        leftPanel.setLayout(new GridLayout(4, 3, 3, 0));
-        principal.add(leftPanel, BorderLayout.WEST);
+        leftPanel.setPreferredSize(new Dimension(350, 500));               
         
+        leftPanel.setLayout(new BorderLayout());
+
         JPanel leftGap = new JPanel();
-        leftGap.setPreferredSize(new Dimension(30, 330));
+        leftGap.setPreferredSize(new Dimension(30, 400));
         leftGap.setBackground(new Color(246, 251, 244));
         
         JPanel rightGap = new JPanel();
-        rightGap.setPreferredSize(new Dimension(30, 330));
+        rightGap.setPreferredSize(new Dimension(30, 400));
         rightGap.setBackground(new Color(246, 251, 244));
-        //rightGap.setBackground(Color.GRAY);
-        rightGap.setVisible(true);
         
-        String[] listOfProducts = ProductRepository.getListOfProducts();
+        JPanel topGap = new JPanel();
+        topGap.setPreferredSize(new Dimension(340, 50));
+        topGap.setBackground(new Color(246, 251, 244));
+        
+        JPanel bottomGap = new JPanel();
+        bottomGap.setPreferredSize(new Dimension(340, 50));
+        bottomGap.setBackground(new Color(246, 251, 244));
+        
+        JPanel centerContent = new JPanel();
+        centerContent.setPreferredSize(new Dimension(340, 400));
+        centerContent.setBackground(new Color(246, 251, 244));
+        centerContent.setLayout(new GridLayout(9,1,0,15));
+
+        leftPanel.add(rightGap, BorderLayout.WEST);
+        leftPanel.add(leftGap, BorderLayout.EAST);
+        leftPanel.add(topGap, BorderLayout.NORTH);
+        leftPanel.add(bottomGap, BorderLayout.SOUTH);
+        leftPanel.add(centerContent, BorderLayout.CENTER);
+        
+        clientes = new JLabel("Lista de Clientes");  
+        
+        insertCliente = new JButton("Definir Cliente");
+        insertCliente.addMouseListener(new SaleEvents(this, insertCliente));
+        
         produtos = new JLabel("Lista de Produtos");
-        cbProdutos = new JComboBox(listOfProducts);
+                               
+        totalProdutos = new JLabel("Total de Produtos");
+        tfTotalProdutos = new JTextField();
         
-        String[] listOfClientes = ClientRepository.getListOfClients();
-        clientes = new JLabel("Lista de Clientes");
-        cbClientes = new JComboBox(listOfClientes);
+        insertProduto = new JButton("Adiciona Produto");
+        insertProduto.addMouseListener(new SaleEvents(this, insertProduto));
+                              
+        centerContent.add(clientes);
+        centerContent.add(cbClientes);
+        centerContent.add(insertCliente);
+        centerContent.add(produtos);
+        centerContent.add(cbProdutos);           
+        centerContent.add(totalProdutos);
+        centerContent.add(tfTotalProdutos); 
+        centerContent.add(insertProduto);     
         
-        leftPanel.add(leftGap);
-        leftPanel.add(produtos);
-        leftPanel.add(cbProdutos);         
-        leftPanel.add(clientes);
-        leftPanel.add(cbClientes);
-        leftPanel.add(rightGap);
-        
-        leftPanel.repaint();
+        finalizaCompra = new JButton("Finalizar Compra");
+        finalizaCompra.addMouseListener(new SaleEvents(this, finalizaCompra));
+
+        centerContent.add(finalizaCompra);
+       
+        principal.add(leftPanel, BorderLayout.WEST);
     }
     
     public void mostraTela() {

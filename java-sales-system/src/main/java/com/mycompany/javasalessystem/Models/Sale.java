@@ -76,14 +76,14 @@ public class Sale {
                 
         if(product == null){
             System.out.println("Produto não encontrado no sistema");
-            return;
+            throw new Exception("Produto não encontrado no sistema");
         }
         
         int stockQuantity = product.getQuantity();
         
         if(stockQuantity < quantity){
-            System.out.println("Quantidade insuficiente de "+product.getName()+"no estoque: Ha apenas " + stockQuantity + " unidades");
-            return;
+            System.out.println("Quantidade insuficiente de "+product.getName()+" no estoque: Ha apenas " + stockQuantity + " unidades");
+            throw new Exception("Quantidade insuficiente de "+product.getName()+" no estoque: Ha apenas " + stockQuantity + " unidades");
         } 
         
         this.finalPrice += (float)(product.getPrice() * quantity);
