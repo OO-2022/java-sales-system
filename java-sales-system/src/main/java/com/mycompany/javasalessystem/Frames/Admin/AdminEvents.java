@@ -28,7 +28,7 @@ public class AdminEvents implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (button.getText().equals("Cadastrar funcionário")){
+        if (button.getText().equals("Cadastrar vendedor")){
             SellerFrame telaSeller = new SellerFrame();
             telaSeller.montaTela();
         }

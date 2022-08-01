@@ -55,7 +55,7 @@ public class AdminRepository implements Repository {
             throw new Exception("Senha deve ter no minimo 8 caracteres");
         }
         
-        if (Verifications.verifyCPF(cpf) == false) {
+        if (!Verifications.verifyCPF(cpf)) {
             throw new Exception("CPF invalido");
         }
 
@@ -107,26 +107,26 @@ public class AdminRepository implements Repository {
     public static Admin update(String id, String name, String email, String password, String occupation, String cpf) throws Exception {
         Admin admin = findById(id);
         
-        if (Verifications.verifyName(name) == false) {
-            throw new Exception("Nome invalido");
-        }
-
-        if (Verifications.verifyEmail(email) == false) {
-            throw new Exception("Email invalido");
-        }
-
-        if (Verifications.verifyPassword(password) == false) {
-            throw new Exception("Senha deve ter no minimo 8 caracteres");
-        }
-        
-        if (Verifications.verifyCPF(cpf) == false) {
-            throw new Exception("CPF invalido");
-        }
-
         if (admin == null) {
             throw new Exception("Administrador nao encontrado no sistema");
         }
+        
+        if (!Verifications.verifyName(name)) {
+            throw new Exception("Nome invalido");
+        }
 
+        if (!Verifications.verifyEmail(email)) {
+            throw new Exception("Email invalido");
+        }
+
+        if (!Verifications.verifyPassword(password)) {
+            throw new Exception("Senha deve ter no minimo 8 caracteres");
+        }
+        
+        if (!Verifications.verifyCPF(cpf)) {
+            throw new Exception("CPF invalido");
+        }
+        
         admin.setName(name);
         admin.setEmail(email);
         admin.setPassword(password);

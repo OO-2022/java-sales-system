@@ -55,7 +55,7 @@ public class SellerEvents implements MouseListener {
             try {                
                 model.addElement(SellerRepository.create(name, email, password, occupation, cpf));                
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
 
                 frame.getList().setModel(model);
@@ -75,7 +75,7 @@ public class SellerEvents implements MouseListener {
                     try {
                         SellerRepository.update(id, name, email, password, occupation, cpf);
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, ex);
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
                         
                    
@@ -99,7 +99,7 @@ public class SellerEvents implements MouseListener {
                     try {
                         SellerRepository.delete(seller.getId());
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, ex);
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
                                 
                     frame.repaint();

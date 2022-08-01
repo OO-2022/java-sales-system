@@ -68,15 +68,15 @@ public class ClientRepository implements Repository {
     }
 
     public static Client create(String name, String cpf, String email, String phone, String cep) throws Exception {
-        if (Verifications.verifyName(name) == false) {
+        if (!Verifications.verifyName(name)) {
             throw new Exception("Nome invalido");
         }
         
-        if (Verifications.verifyEmail(email) == false) {
+        if (!Verifications.verifyEmail(email)) {
             throw new Exception("Email invalido");
         }
         
-        if (Verifications.verifyCPF(cpf) == false) {
+        if (!Verifications.verifyCPF(cpf)) {
             throw new Exception("CPF invalido");
         }
         
@@ -127,16 +127,16 @@ public class ClientRepository implements Repository {
     }
 
     public static Client update(String id, String name, String cpf, String email, String phone, String cep) throws Exception {
-        if (Verifications.verifyName(name) == false) {
+        if (!Verifications.verifyName(name)) {
             throw new Exception("Nome invalido");
         }
         
-        if (Verifications.verifyEmail(email) == false) {
+        if (!Verifications.verifyEmail(email)) {
             throw new Exception("Email invalido");
         }
         
-        if(Verifications.verifyCPF(cpf)){
-            throw new Exception ("Email invalido");
+        if (!Verifications.verifyCPF(cpf)) {
+            throw new Exception("CPF invalido");
         }
         
         Client client = findById(id);
