@@ -44,11 +44,11 @@ public class SellerRepository implements Repository{
     }
     
     public static Seller create(String name, String email, String password, String occupation, String cpf) throws Exception {
-        if (Verifications.verifyName(name) == false) {
+        if (!Verifications.verifyName(name)) {
             throw new Exception("Nome invalido");
         }
         
-        if (Verifications.verifyEmail(email) == false) {
+        if (!Verifications.verifyEmail(email)) {
             throw new Exception("Email invalido");
         }
         
@@ -56,7 +56,7 @@ public class SellerRepository implements Repository{
             throw new Exception("Senha deve ter no minimo 8 caracteres");
         }
         
-        if (Verifications.verifyCPF(cpf) == false) {
+        if (!Verifications.verifyCPF(cpf)) {
             throw new Exception("CPF invalido");
         }
         
@@ -111,7 +111,11 @@ public class SellerRepository implements Repository{
             throw new Exception("Funcionario nao encontrado no sistema");
         }
         
-        if (Verifications.verifyEmail(email) == false) {
+        if (!Verifications.verifyName(name)) {
+            throw new Exception("Nome invalido");
+        }
+        
+        if (!Verifications.verifyEmail(email)) {
             throw new Exception("Email invalido");
         }
         
@@ -119,7 +123,7 @@ public class SellerRepository implements Repository{
             throw new Exception("Senha deve ter no minimo 8 caracteres");
         }
         
-        if (Verifications.verifyCPF(cpf) == false) {
+        if (!Verifications.verifyCPF(cpf)) {
             throw new Exception("CPF invalido");
         }
         

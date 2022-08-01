@@ -11,6 +11,7 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 package com.mycompany.javasalessystem.Frames.Login;
 
 import com.mycompany.javasalessystem.Frames.Admin.AdminFrame;
+import com.mycompany.javasalessystem.Frames.Sale.SaleFrame;
 import com.mycompany.javasalessystem.Models.User;
 import com.mycompany.javasalessystem.Repositories.UserRepository;
 import com.mycompany.javasalessystem.Utils.Session;
@@ -178,8 +179,9 @@ public class Login extends javax.swing.JFrame {
 	}
 
 	if (Session.getSeller() != null) {
-            JOptionPane.showMessageDialog(null, "Seller");
-            //Tela de Venda
+            SaleFrame telaSale = new SaleFrame();
+            telaSale.montaTela();
+            setVisible(false);
 	}
     }//GEN-LAST:event_btnLoginActionPerformed
 
