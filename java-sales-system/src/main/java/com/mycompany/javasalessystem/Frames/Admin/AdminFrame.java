@@ -120,21 +120,21 @@ public class AdminFrame extends JFrame{
         
         //Instanciando e configurando os botões
         
-        btnSeller = new javax.swing.JButton("Cadastrar vendedor");
+        btnSeller = new javax.swing.JButton("Vendedor");
         btnSeller.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSeller.setBackground(Color.WHITE);
         btnSeller.setForeground(Color.black);
         btnSeller.addMouseListener(new AdminEvents(btnSeller));
         btnSeller.setMaximumSize( new Dimension(20,20) );
         
-        btnAdmin = new javax.swing.JButton("Cadastrar administrador");
+        btnAdmin = new javax.swing.JButton("Administrador");
         btnAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdmin.setBackground(Color.WHITE);
         btnAdmin.setForeground(Color.black);
         btnAdmin.addMouseListener(new AdminEvents(btnAdmin));
         btnAdmin.setMaximumSize( new Dimension(20,20) );
         
-        btnClient = new javax.swing.JButton("Cadastrar cliente");
+        btnClient = new javax.swing.JButton("Cliente");
         btnClient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClient.setBackground(Color.WHITE);
         btnClient.setForeground(Color.black);
