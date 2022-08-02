@@ -97,7 +97,7 @@ public class AdminFrame extends JFrame{
     
     private void configuraJanela() {
         this.setSize(600, 400);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         principal = new JPanel();
         principal.setLayout(new BorderLayout());

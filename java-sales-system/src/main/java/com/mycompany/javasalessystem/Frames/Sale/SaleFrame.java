@@ -133,7 +133,9 @@ public class SaleFrame extends JFrame{
     
     private void configuraJanela() {
         this.setSize(700, 500);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        if(Session.getSeller() != null){
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
 
         principal = new JPanel();
         principal.setLayout(new BorderLayout());
