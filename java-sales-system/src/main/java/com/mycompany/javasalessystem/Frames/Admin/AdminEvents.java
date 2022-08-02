@@ -10,6 +10,7 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 package com.mycompany.javasalessystem.Frames.Admin;
 
+import com.mycompany.javasalessystem.Frames.Admin.CRUDAdmin.CreateAdminFrame;
 import com.mycompany.javasalessystem.Frames.Product.ProductFrame;
 import com.mycompany.javasalessystem.Frames.Client.ClientFrame;
 import com.mycompany.javasalessystem.Frames.Seller.SellerFrame;
@@ -28,19 +29,20 @@ public class AdminEvents implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (button.getText().equals("Cadastrar vendedor")){
+        if (button.getText().equals("Vendedor")){
             SellerFrame telaSeller = new SellerFrame();
             telaSeller.montaTela();
         }
-        else if (button.getText().equals("Cadastrar cliente")){
+        else if (button.getText().equals("Cliente")){
             ClientFrame telaClient = new ClientFrame();
             telaClient.montaTela();
         }
         else if (button.getText().equals("Gerenciar estoque")){
             ProductFrame telaProduct = new ProductFrame();
             telaProduct.montaTela();
-        } else if (button.getText().equals("Cadastrar administrador")){
-            
+        } else if (button.getText().equals("Administrador")){
+            CreateAdminFrame telaAdmin = new CreateAdminFrame();
+            telaAdmin.montaTela();
         }  else if (button.getText().equals("Sessão de vendas")){
             SaleFrame telaSale = new SaleFrame();
             telaSale.montaTela();

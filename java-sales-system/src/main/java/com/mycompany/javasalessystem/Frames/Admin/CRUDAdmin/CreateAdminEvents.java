@@ -8,44 +8,37 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
 */
 
-package com.mycompany.javasalessystem.Frames.Seller;
+package com.mycompany.javasalessystem.Frames.Admin.CRUDAdmin;
 
-import com.mycompany.javasalessystem.Models.Seller;
 import com.mycompany.javasalessystem.Models.Admin;
-import com.mycompany.javasalessystem.Models.User;
 
-
-import com.mycompany.javasalessystem.Repositories.SellerRepository;
 import com.mycompany.javasalessystem.Repositories.AdminRepository;
-import com.mycompany.javasalessystem.Utils.Encrypt;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class SellerEvents implements MouseListener {
+public class CreateAdminEvents implements MouseListener {
     
-    private final SellerFrame frame;
+    private final CreateAdminFrame frame;
     private final JButton button;
-    private final SellerRepository sellerRepository;
+    private final AdminRepository adminRepository;
     
-    public SellerEvents(SellerFrame frame, JButton button) {
+    public CreateAdminEvents(CreateAdminFrame frame, JButton button) {
         this.frame = frame;
         this.button = button;
-        this.sellerRepository = new SellerRepository();
+        this.adminRepository = new AdminRepository();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         switch (button.getText()) {
             case "Adicionar" -> {
-                DefaultListModel<Seller> model = (DefaultListModel<Seller>) frame.getList().getModel();
+                DefaultListModel<Admin> model = (DefaultListModel<Admin>) frame.getList().getModel();
                     
-                String id = frame.getTfId().getText();
+                //String id = frame.getTfId().getText();
                 String name = frame.getTfName().getText();
                 String email = frame.getTfEmail().getText();
                 String password = frame.getTfPassword().getText();
@@ -53,7 +46,7 @@ public class SellerEvents implements MouseListener {
                 String cpf = frame.getTfCpf().getText();
                 
                 try {                
-                    model.addElement(SellerRepository.create(name, email, password, occupation, cpf));                
+                    model.addElement(AdminRepository.create(name, email, password, occupation, cpf));                
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                 }
@@ -73,12 +66,11 @@ public class SellerEvents implements MouseListener {
                     String cpf = frame.getTfCpf().getText();
                     
                     try {
-                        SellerRepository.update(id, name, email, password, occupation, cpf);
+                        AdminRepository.update(id, name, email, password, occupation, cpf);
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
                         
-                   
                     frame.repaint();
                 }
             }
@@ -92,12 +84,13 @@ public class SellerEvents implements MouseListener {
             case "Remover" ->{
                 int selectedIndex = frame.getList().getSelectedIndex();
                 if (selectedIndex != -1) {
-                    DefaultListModel<Seller> model = (DefaultListModel<Seller>) frame.getList().getModel();
-                    Seller seller = model.get(selectedIndex);
+                    DefaultListModel<Admin> model = (DefaultListModel<Admin>) frame.getList().getModel();
+                    Admin admin = model.get(selectedIndex);
                     model.removeElementAt(selectedIndex);
                     frame.getList().setModel(model);
+                    
                     try {
-                        SellerRepository.delete(seller.getId());
+                        AdminRepository.delete(admin.getId());
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
