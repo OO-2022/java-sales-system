@@ -84,6 +84,23 @@ public class SaleEvents implements MouseListener {
                     return;
                 }
                 
+                Object[] options = { "Sim", "Nao" };
+                Client cliente = (Client) frame.cbClientes.getSelectedItem();
+                int opcao = JOptionPane.showOptionDialog(null, "Deseja finalizar a venda?", "Venda do cliente "+cliente.getName(), JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+                
+                if(opcao == 1){
+                    return;
+                }
+                
+                opcao = JOptionPane.showOptionDialog(null, "Deseja outra venda?", "Venda do cliente "+cliente.getName(), JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+                
+                if(opcao == 0){
+                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                    SaleFrame telaSale = new SaleFrame();
+                    telaSale.montaTela();
+                    return;
+                }
+                
                 frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
             
             }
