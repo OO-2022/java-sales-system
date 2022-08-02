@@ -13,14 +13,21 @@ package com.mycompany.javasalessystem.Frames.Sale;
 import com.mycompany.javasalessystem.Models.Sale;
 import com.mycompany.javasalessystem.Models.Product;
 import com.mycompany.javasalessystem.Models.Client;
+import com.mycompany.javasalessystem.Repositories.ClientRepository;
 
 
 import com.mycompany.javasalessystem.Repositories.SaleRepository;
+import com.mycompany.javasalessystem.Utils.ConversionToDate;
 import com.mycompany.javasalessystem.Utils.Encrypt;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,8 +99,14 @@ public class SaleEvents implements MouseListener {
                     return;
                 }
                 
-                opcao = JOptionPane.showOptionDialog(null, "Deseja outra venda?", "Venda do cliente "+cliente.getName(), JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+                try {
+                    geraNotaFiscal(frame.getSale());
+                } catch (IOException ex) {
+                    Logger.getLogger(SaleEvents.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
+                opcao = JOptionPane.showOptionDialog(null, "Deseja outra venda?", "Venda do cliente "+cliente.getName(), JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+
                 if(opcao == 0){
                     frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                     SaleFrame telaSale = new SaleFrame();
@@ -107,6 +120,35 @@ public class SaleEvents implements MouseListener {
         
         }
     }
+    
+    public static void geraNotaFiscal(Sale sale) throws IOException {
+        Client cliente = ClientRepository.findById(sale.getIdClient());
+        
+        FileWriter arq = new FileWriter("src/main/java/com/mycompany/javasalessystem/Temp/"+cliente.getName()+".txt");
+        PrintWriter gravarArq = new PrintWriter(arq);
+
+        gravarArq.printf("NOTA FISCAL%n");
+        gravarArq.printf("- Cliente:"+cliente.getName()+"%n");
+        gravarArq.printf("%n");
+        
+        for (Product product: sale.getProducts()){
+            String nome = product.getName();
+            int quantidade = product.getQuantity();
+            double preco = product.getPrice();
+            
+            gravarArq.printf("-> " + nome + ": " + quantidade + " x " + preco + " = " + (preco*quantidade) +"%n");
+        }
+        
+        DecimalFormat df =  new DecimalFormat("0.00");
+        gravarArq.printf("Preco final: "+df.format(sale.getFinalPrice())+"%n");
+        gravarArq.printf("%n");
+        gravarArq.printf("- Data: "+sale.getDate()+"%n");
+        gravarArq.printf("%n");
+
+        arq.close();
+
+        JOptionPane.showMessageDialog(null, "\nNota Fiscal do cliente foi gravada com sucesso");
+     }
 
     @Override
     public void mousePressed(MouseEvent e) {
