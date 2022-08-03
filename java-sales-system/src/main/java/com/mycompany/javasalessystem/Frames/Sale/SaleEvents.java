@@ -65,6 +65,7 @@ public class SaleEvents implements MouseListener {
                 }
          
                 frame.repaint();
+                break;
             }
             case "Adiciona Produto" -> {
                 if (frame.getSale() == null){
@@ -83,7 +84,8 @@ public class SaleEvents implements MouseListener {
                 } catch(Exception ex){
                     JOptionPane.showMessageDialog(null, ex);
                 }
-        
+                
+                break;        
             }
             case "Finalizar Compra" -> {
                 if (frame.getSale() == null || frame.getSale().getProducts().size() == 0){
@@ -116,15 +118,28 @@ public class SaleEvents implements MouseListener {
                 
                 frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
             
+                break;
+
             }
+        }
         
+    }
+    
+    public void removeItemFromList(int position, int quantidade){
+        try {
+              frame.getSale().removeProduct(position, quantidade);
+              frame.configSale();
+
+              frame.salePanel.repaint();             
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
         }
     }
     
     public static void geraNotaFiscal(Sale sale) throws IOException {
         Client cliente = ClientRepository.findById(sale.getIdClient());
         
-        FileWriter arq = new FileWriter("src/main/java/com/mycompany/javasalessystem/Temp/"+cliente.getName()+".txt");
+        FileWriter arq = new FileWriter("src/main/java/com/mycompany/javasalessystem/Temp/"+cliente.getId()+".txt");
         PrintWriter gravarArq = new PrintWriter(arq);
 
         gravarArq.printf("NOTA FISCAL%n");

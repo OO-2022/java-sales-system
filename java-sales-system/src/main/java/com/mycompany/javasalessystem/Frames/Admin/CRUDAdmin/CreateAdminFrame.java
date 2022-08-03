@@ -225,7 +225,7 @@ public class CreateAdminFrame extends JFrame{
         password = new JLabel("Password");
         tfPassword = new JPasswordField();
         
-        String listOfOccupations[] = {"Vendedor", "Gerente de Vendas", "Supervisor de Vendas"};
+        String listOfOccupations[] = {"Administrador de Sistema", "Administrador de Vendas"};
         
         occupation = new JLabel("Occupation");
         cbOccupation = new JComboBox(listOfOccupations);
