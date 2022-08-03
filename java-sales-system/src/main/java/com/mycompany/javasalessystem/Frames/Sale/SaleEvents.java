@@ -139,7 +139,7 @@ public class SaleEvents implements MouseListener {
     public static void geraNotaFiscal(Sale sale) throws IOException {
         Client cliente = ClientRepository.findById(sale.getIdClient());
         
-        FileWriter arq = new FileWriter("src/main/java/com/mycompany/javasalessystem/Temp/"+cliente.getId()+".txt");
+        FileWriter arq = new FileWriter("src/main/java/com/mycompany/javasalessystem/Temp/"+sale.getId()+".txt");
         PrintWriter gravarArq = new PrintWriter(arq);
 
         gravarArq.printf("NOTA FISCAL%n");
