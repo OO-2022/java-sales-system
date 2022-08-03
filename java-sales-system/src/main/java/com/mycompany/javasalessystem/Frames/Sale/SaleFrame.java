@@ -15,7 +15,6 @@ import com.mycompany.javasalessystem.Models.Sale;
 import com.mycompany.javasalessystem.Models.Client;
 import com.mycompany.javasalessystem.Utils.Session;
 import com.mycompany.javasalessystem.Repositories.ProductRepository;
-import com.mycompany.javasalessystem.Repositories.ClientRepository;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -168,13 +167,26 @@ public class SaleFrame extends JFrame{
         
         salePanel.add(clientePanel, BorderLayout.NORTH);
         
+        int cont = 0;
         for (Product product: produtosCompra){
             String nome = product.getName();
             int quantidade = product.getQuantity();
             double preco = product.getPrice();
+            int local = cont + 1;
+            
+            JPanel panel = new JPanel();
+            JButton button = new JButton("Remover");
+            button.addActionListener( e -> {   
+                SaleEvents evt = new SaleEvents(this, button);
+                evt.removeItemFromList(local, quantidade);
+            });
+
                         
             JLabel line = new JLabel( nome + " - " + quantidade + " x " + preco + " = " + (preco*quantidade) );
-            saleProductsPanel.add(line);
+            panel.add(line);
+            panel.add(button);
+            saleProductsPanel.add(panel);   
+            cont++;
         }
                 
         salePanel.add(scrollFrame, BorderLayout.CENTER);        
