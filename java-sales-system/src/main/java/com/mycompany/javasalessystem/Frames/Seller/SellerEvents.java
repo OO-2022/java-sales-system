@@ -21,7 +21,7 @@ public class SellerEvents implements MouseListener {
 
     private JButton button;
 
-    public SellerEvents(JButton button) {
+    SellerEvents(JButton button) {
         this.button = button;
     }
 
