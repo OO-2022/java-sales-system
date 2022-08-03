@@ -6,28 +6,25 @@ Aluno: Marcos Paulo Rodrigues da Silva     Matrícula: 202165556C
 Aluno: Rafael de Oliveira Vargas           Matrícula: 202035022
 Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
-*/
+ */
 
 package com.mycompany.javasalessystem.Frames.Client;
 
 import com.mycompany.javasalessystem.Models.Client;
 import com.mycompany.javasalessystem.Repositories.ClientRepository;
-import com.mycompany.javasalessystem.Utils.Encrypt;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class ClientEvents implements MouseListener {
-    
+
     private final ClientFrame frame;
     private final JButton button;
     private final ClientRepository clientRepository;
-    
+
     public ClientEvents(ClientFrame frame, JButton button) {
         this.frame = frame;
         this.button = button;
@@ -39,13 +36,13 @@ public class ClientEvents implements MouseListener {
         switch (button.getText()) {
             case "Adicionar" -> {
                 DefaultListModel<Client> model = (DefaultListModel<Client>) frame.getList().getModel();
-                    
+
                 String name = frame.getTfName().getText();
                 String email = frame.getTfEmail().getText();
                 String phone = frame.getTfPhone().getText();
                 String cep = frame.getTfCep().getText();
                 String cpf = frame.getTfCpf().getText();
-                
+
                 try {
                     model.addElement(ClientRepository.create(name, cpf, email, phone, cep));
                 } catch (Exception ex) {
@@ -54,21 +51,27 @@ public class ClientEvents implements MouseListener {
 
                 frame.getList().setModel(model);
                 frame.repaint();
+                
+                break;
             }
             case "Editar" -> {
                 int selectedIndex = frame.getList().getSelectedIndex();
                 if (selectedIndex != -1) {
                     DefaultListModel<Client> model = (DefaultListModel<Client>) frame.getList().getModel();
                     Client client = model.getElementAt(selectedIndex);
-                    
+
                     try {
                         ClientRepository.update(client.getId(), frame.getTfName().getText(), frame.getTfCpf().getText(), frame.getTfEmail().getText(), frame.getTfPhone().getText(), frame.getTfCep().getText());
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos");
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
-                    
+
                     frame.repaint();
                 }
+                
+                break;
             }
             case "Limpar" -> {
                 frame.getTfId().setText("");
@@ -77,9 +80,10 @@ public class ClientEvents implements MouseListener {
                 frame.getTfEmail().setText("");
                 frame.getTfPhone().setText("");
                 frame.getTfCep().setText("");
-                
+
+                break;
             }
-            case "Remover" ->{
+            case "Remover" -> {
                 int selectedIndex = frame.getList().getSelectedIndex();
                 if (selectedIndex != -1) {
                     DefaultListModel<Client> model = (DefaultListModel<Client>) frame.getList().getModel();
@@ -91,23 +95,23 @@ public class ClientEvents implements MouseListener {
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
-                                
+
                     frame.repaint();
                 }
                 
-                
+                break;
             }
         }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+
     }
 
     @Override

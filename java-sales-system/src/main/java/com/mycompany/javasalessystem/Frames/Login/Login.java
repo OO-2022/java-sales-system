@@ -6,12 +6,12 @@ Aluno: Marcos Paulo Rodrigues da Silva     Matrícula: 202165556C
 Aluno: Rafael de Oliveira Vargas           Matrícula: 202035022
 Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
-*/
+ */
 
 package com.mycompany.javasalessystem.Frames.Login;
 
 import com.mycompany.javasalessystem.Frames.Admin.AdminFrame;
-import com.mycompany.javasalessystem.Frames.Sale.SaleFrame;
+import com.mycompany.javasalessystem.Frames.Seller.SellerFrame;
 import com.mycompany.javasalessystem.Models.User;
 import com.mycompany.javasalessystem.Repositories.UserRepository;
 import com.mycompany.javasalessystem.Utils.Session;
@@ -161,28 +161,27 @@ public class Login extends javax.swing.JFrame {
         if (email.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
             return;
-	}
-        
+        }
+
         User user = UserRepository.signIn(email, password);
-        
+
         if (user == null) {
             JOptionPane.showMessageDialog(null, "Email ou senha incorretos!");
             return;
-	}
-        
+        }
+
         //JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-        
         if (Session.getAdmin() != null) {
             AdminFrame telaAdmin = new AdminFrame();
             telaAdmin.montaTela();
             setVisible(false);
-	}
+        }
 
-	if (Session.getSeller() != null) {
-            SaleFrame telaSale = new SaleFrame();
-            telaSale.montaTela();
+        if (Session.getSeller() != null) {
+            SellerFrame telaSeller = new SellerFrame();
+            telaSeller.montaTela();
             setVisible(false);
-	}
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered

@@ -8,10 +8,10 @@ Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
  */
 
-package com.mycompany.javasalessystem.Frames.Product;
+package com.mycompany.javasalessystem.Frames.Seller.CRUDSeller;
 
-import com.mycompany.javasalessystem.Models.Product;
-import com.mycompany.javasalessystem.Repositories.ProductRepository;
+import com.mycompany.javasalessystem.Models.Seller;
+import com.mycompany.javasalessystem.Repositories.SellerRepository;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -19,29 +19,33 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class ProductEvents implements MouseListener {
+public class CreateSellerEvents implements MouseListener {
 
-    private final ProductFrame frame;
+    private final CreateSellerFrame frame;
     private final JButton button;
+    private final SellerRepository sellerRepository;
 
-    public ProductEvents(ProductFrame frame, JButton button) {
+    public CreateSellerEvents(CreateSellerFrame frame, JButton button) {
         this.frame = frame;
         this.button = button;
+        this.sellerRepository = new SellerRepository();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         switch (button.getText()) {
             case "Adicionar" -> {
-                DefaultListModel<Product> model = (DefaultListModel<Product>) frame.getList().getModel();
+                DefaultListModel<Seller> model = (DefaultListModel<Seller>) frame.getList().getModel();
+
+                String id = frame.getTfId().getText();
+                String name = frame.getTfName().getText();
+                String email = frame.getTfEmail().getText();
+                String password = frame.getTfPassword().getText();
+                String occupation = frame.getCbOccupation().getSelectedItem().toString();
+                String cpf = frame.getTfCpf().getText();
 
                 try {
-                    String name = frame.getTfName().getText();
-                    int quantity = Integer.parseInt(frame.getTfQuantity().getText());
-                    double price = Double.parseDouble(frame.getTfPrice().getText());
-                    model.addElement(ProductRepository.create(name, price, quantity));
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos");
+                    model.addElement(SellerRepository.create(name, email, password, occupation, cpf));
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                 }
@@ -54,42 +58,43 @@ public class ProductEvents implements MouseListener {
             case "Editar" -> {
                 int selectedIndex = frame.getList().getSelectedIndex();
                 if (selectedIndex != -1) {
-                    DefaultListModel<Product> model = (DefaultListModel<Product>) frame.getList().getModel();
 
-                    Product product = model.getElementAt(selectedIndex);
+                    String id = frame.getTfId().getText();
+                    String name = frame.getTfName().getText();
+                    String email = frame.getTfEmail().getText();
+                    String password = frame.getTfPassword().getText();
+                    String occupation = frame.getCbOccupation().getSelectedItem().toString();
+                    String cpf = frame.getTfCpf().getText();
 
                     try {
-                        int quantity = Integer.parseInt(frame.getTfQuantity().getText());
-                        double price = Double.parseDouble(frame.getTfPrice().getText());
-                        ProductRepository.update(product.getId(), frame.getTfName().getText(), price, quantity);
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos");
+                        SellerRepository.update(id, name, email, password, occupation, cpf);
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
 
                     frame.repaint();
+                    
+                    break;
                 }
-                
-                break;
             }
             case "Limpar" -> {
                 frame.getTfId().setText("");
                 frame.getTfName().setText("");
-                frame.getTfQuantity().setText("");
-                frame.getTfPrice().setText("");
+                frame.getTfCpf().setText("");
+                frame.getTfEmail().setText("");
+                frame.getTfPassword().setText("");
                 
                 break;
             }
             case "Remover" -> {
                 int selectedIndex = frame.getList().getSelectedIndex();
                 if (selectedIndex != -1) {
-                    DefaultListModel<Product> model = (DefaultListModel<Product>) frame.getList().getModel();
-                    Product product = model.get(selectedIndex);
+                    DefaultListModel<Seller> model = (DefaultListModel<Seller>) frame.getList().getModel();
+                    Seller seller = model.get(selectedIndex);
                     model.removeElementAt(selectedIndex);
                     frame.getList().setModel(model);
                     try {
-                        ProductRepository.delete(product.getId());
+                        SellerRepository.delete(seller.getId());
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
