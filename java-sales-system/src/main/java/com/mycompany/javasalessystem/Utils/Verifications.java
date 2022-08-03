@@ -86,12 +86,6 @@ public class Verifications {
         }
     }
 
-    /*
-    public static void verifyCEP(String cep) {
-        //implementar
-    }
-*/
-
     public static boolean verifyName(String name) {
         return name.length() > 0;
     }

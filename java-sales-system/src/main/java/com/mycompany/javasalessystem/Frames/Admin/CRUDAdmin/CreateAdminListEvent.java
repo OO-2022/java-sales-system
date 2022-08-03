@@ -6,11 +6,9 @@ Aluno: Marcos Paulo Rodrigues da Silva     Matrícula: 202165556C
 Aluno: Rafael de Oliveira Vargas           Matrícula: 202035022
 Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
-*/
-
+ */
 package com.mycompany.javasalessystem.Frames.Admin.CRUDAdmin;
 
-import com.mycompany.javasalessystem.Frames.Admin.*;
 import com.mycompany.javasalessystem.Models.Admin;
 
 import javax.swing.event.ListSelectionEvent;
@@ -36,7 +34,7 @@ public class CreateAdminListEvent implements ListSelectionListener {
             tela.getTfEmail().setText(elementAt.getEmail());
             tela.getTfPassword().setText(elementAt.getPassword());
             tela.getCbOccupation().setSelectedItem(elementAt.getOccupation());
-        }            
+        }
     }
 
 }

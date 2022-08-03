@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mycompany.javasalessystem.Database.Database;
 import com.mycompany.javasalessystem.Models.Client;
-import com.mycompany.javasalessystem.Models.Product;
 import com.mycompany.javasalessystem.Utils.Verifications;
 import java.lang.reflect.Type;
 import java.util.ArrayList;

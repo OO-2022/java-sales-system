@@ -7,18 +7,15 @@ Aluno: Rafael de Oliveira Vargas           Matrícula: 202035022
 Aluno: Ticiano de Oliveira Fracette        Matrícula: 202065189AC
 
  */
+
 package com.mycompany.javasalessystem.Frames.Sale;
 
 import com.mycompany.javasalessystem.Frames.Client.ClientFrame;
-import com.mycompany.javasalessystem.Frames.Client.ClientWindowEvents;
 import com.mycompany.javasalessystem.Models.Sale;
 import com.mycompany.javasalessystem.Models.Product;
 import com.mycompany.javasalessystem.Models.Client;
 import com.mycompany.javasalessystem.Repositories.ClientRepository;
-
 import com.mycompany.javasalessystem.Repositories.SaleRepository;
-import com.mycompany.javasalessystem.Utils.ConversionToDate;
-import com.mycompany.javasalessystem.Utils.Encrypt;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -27,14 +24,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.util.ArrayList;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class SaleEvents implements MouseListener {
@@ -67,12 +59,13 @@ public class SaleEvents implements MouseListener {
                 }
 
                 frame.repaint();
+
                 break;
             }
             case "Criar Cliente" -> {
                 ClientFrame telaClient = new ClientFrame();
                 telaClient.montaTela();
-                
+
                 break;
             }
             case "Adiciona Produto" -> {
@@ -127,7 +120,6 @@ public class SaleEvents implements MouseListener {
                 frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 
                 break;
-
             }
         }
 
