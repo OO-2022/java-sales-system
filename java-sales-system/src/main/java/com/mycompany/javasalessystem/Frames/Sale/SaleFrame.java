@@ -43,7 +43,6 @@ public class SaleFrame extends JFrame{
 
     JLabel produtos;
     JButton insertProduto;
-
     
     JLabel totalProdutos;
     JTextField tfTotalProdutos;
@@ -51,6 +50,7 @@ public class SaleFrame extends JFrame{
     JLabel clienteText;
     
     JButton finalizaCompra;
+    JButton createCliente;
     
     Border lineBorder;
     
@@ -251,7 +251,7 @@ public class SaleFrame extends JFrame{
         JPanel centerContent = new JPanel();
         centerContent.setPreferredSize(new Dimension(340, 400));
         centerContent.setBackground(new Color(246, 251, 244));
-        centerContent.setLayout(new GridLayout(9,1,0,15));
+        centerContent.setLayout(new GridLayout(10,1,0,15));
 
         leftPanel.add(rightGap, BorderLayout.WEST);
         leftPanel.add(leftGap, BorderLayout.EAST);
@@ -264,6 +264,9 @@ public class SaleFrame extends JFrame{
         insertCliente = new JButton("Definir Cliente");
         insertCliente.addMouseListener(new SaleEvents(this, insertCliente));
         
+        createCliente = new JButton("Criar Cliente");
+        createCliente.addMouseListener(new SaleEvents(this, createCliente));
+        
         produtos = new JLabel("Lista de Produtos");
                                
         totalProdutos = new JLabel("Total de Produtos");
@@ -275,6 +278,7 @@ public class SaleFrame extends JFrame{
         centerContent.add(clientes);
         centerContent.add(cbClientes);
         centerContent.add(insertCliente);
+        centerContent.add(createCliente);
         centerContent.add(produtos);
         centerContent.add(cbProdutos);           
         centerContent.add(totalProdutos);
